@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0u2n0q6weuwh"]
+
+[ext_resource type="ArrayMesh" uid="uid://cssr6roxhosdk" path="res://Assets/kenney_space-kit/Models/OBJ format/turret_double.obj" id="1_vk1bi"]
+
+[node name="Gun" type="Node3D"]
+
+[node name="TurretDouble" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_vk1bi")
