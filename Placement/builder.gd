@@ -12,8 +12,6 @@ var index:int = 0 # Index of structure being built within the structures Array
 @export var gridmap:GridMap
 #@export var cash_display:Label
 
-var player:PlayerData
-
 var plane:Plane # Used for raycasting mouse
 
 # Use for second click to set rotation
@@ -23,8 +21,7 @@ var structure_instance
 var targetting := false
 
 func _ready():
-	
-	player = PlayerData.new()
+
 	plane = Plane(Vector3.UP, Vector3.ZERO)
 	# Create new MeshLibrary dynamically, can also be done in the editor
 	# See: https://docs.godotengine.org/en/stable/tutorials/3d/using_gridmaps.html
@@ -57,12 +54,14 @@ func _process(delta):
 
 	var gridmap_position = Vector3(round(world_position.x), 0, round(world_position.z))
 	placement.position = lerp(placement.position, gridmap_position, delta * 40)
-	
+		
 	# If we are currently setting the rotation of a placement
 	if targetting:
 		# Live update rotation to face current mouse grid pos
 		var target_rotation = get_rotation_to_target(gridmap_position, placement_position)
 		structure_instance.rotation = target_rotation
+		
+	
 	
 	if Input.is_action_just_pressed("place"):
 		if not targetting:
@@ -98,6 +97,14 @@ func _process(delta):
 			#placement_position = Vector3.ZERO
 			#structure_instance = null
 			
+			
+func out_of_bounds(gridmap_position: Vector3):
+	var x = gridmap_position.x
+	var y = gridmap_position.z
+	if x > gridmap.top_left.x and x < gridmap.dimensions.x and y > gridmap.top_left.y and y < gridmap.topleft.y + gridmap.dimensions.y:
+		return false
+	else:
+		return true
 
 func get_rotation_to_target(target, source):
 	var dir = (target - source).normalized()

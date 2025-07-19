@@ -1,15 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://7ydjnbrej4yd"]
+[gd_scene load_steps=11 format=3 uid="uid://7ydjnbrej4yd"]
 
 [ext_resource type="Environment" uid="uid://ofyq5pwj11sf" path="res://camera-environment.tres" id="1_bcb0y"]
 [ext_resource type="Script" uid="uid://fxm2dfson1lr" path="res://arena.gd" id="1_u21bi"]
-[ext_resource type="PackedScene" uid="uid://bet1c3pwjtrul" path="res://power_plant.tscn" id="2_18q8f"]
 [ext_resource type="Texture2D" uid="uid://rnkolal5sgro" path="res://Placement/Sprites/selector.png" id="2_u45fm"]
 [ext_resource type="Script" uid="uid://clmauo4kdbkas" path="res://Placement/builder.gd" id="2_vbyki"]
 [ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="3_jycnn"]
 [ext_resource type="Resource" uid="uid://7brrr3hnpk8d" path="res://Placement/Structures/gun.tres" id="4_ml6qp"]
 [ext_resource type="Texture2D" uid="uid://igtoa1cyljsw" path="res://Placement/Sprites/crosshair089-outline.png" id="5_8qske"]
 [ext_resource type="Script" uid="uid://dmhs6he0a444l" path="res://grid_map.gd" id="6_ml6qp"]
-[ext_resource type="Texture2D" uid="uid://dmx4ddve2ejtt" path="res://HUD/coin.png" id="8_tu31c"]
+[ext_resource type="PackedScene" uid="uid://du8uqo82hyx75" path="res://hud.tscn" id="9_u21bi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qmqq"]
 
@@ -20,9 +19,6 @@ script = ExtResource("1_u21bi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 size = Vector3(10, 1, 26)
 material = SubResource("StandardMaterial3D_1qmqq")
-
-[node name="PowerPlant" parent="." instance=ExtResource("2_18q8f")]
-transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 0, 0, 0)
 
 [node name="Builder" type="Node3D" parent="." node_paths=PackedStringArray("instance_container", "camera", "gridmap")]
 script = ExtResource("2_vbyki")
@@ -59,64 +55,12 @@ cell_center_x = false
 cell_center_y = false
 cell_center_z = false
 script = ExtResource("6_ml6qp")
-top_left = Vector2(-5, -12)
-dimensions = Vector2(10, 26)
+top_left = Vector2(-4, -12)
+dimensions = Vector2(9, 25)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 14.5, 0)
 
 [node name="UnitContainer" type="Node3D" parent="."]
 
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="MarginContainer" type="MarginContainer" parent="HUD"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="CashIcon" type="TextureRect" parent="HUD/MarginContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("8_tu31c")
-expand_mode = 3
-
-[node name="Cash" type="Label" parent="HUD/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "$10,000"
-
-[node name="MultiplayerHUD" type="Control" parent="HUD/MarginContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/MultiplayerHUD"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
-
-[node name="ButtonHost" type="Button" parent="HUD/MarginContainer/MultiplayerHUD/VBoxContainer"]
-layout_mode = 2
-text = "HOST"
-
-[node name="ButtonJoin" type="Button" parent="HUD/MarginContainer/MultiplayerHUD/VBoxContainer"]
-layout_mode = 2
-text = "JOIN
-"
-
-[connection signal="pressed" from="HUD/MarginContainer/MultiplayerHUD/VBoxContainer/ButtonHost" to="." method="_on_button_host_pressed"]
-[connection signal="pressed" from="HUD/MarginContainer/MultiplayerHUD/VBoxContainer/ButtonJoin" to="." method="_on_button_join_pressed"]
+[node name="HUD" parent="." instance=ExtResource("9_u21bi")]
