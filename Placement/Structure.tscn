@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://codxoeuowvu74"]
+
+[ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="1_hgwmv"]
+
+[node name="Structure" type="Node3D"]
+script = ExtResource("1_hgwmv")

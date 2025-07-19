@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Structure" load_steps=3 format=3 uid="uid://7brrr3hnpk8d"]
+
+[ext_resource type="PackedScene" uid="uid://scj4f0jcts8h" path="res://gun.tscn" id="1_1kmin"]
+[ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="1_8edom"]
+
+[resource]
+script = ExtResource("1_8edom")
+scene = ExtResource("1_1kmin")
+cost = 100
+energyUse = 5
+metadata/_custom_type_script = "uid://rmuofr05ey6q"
