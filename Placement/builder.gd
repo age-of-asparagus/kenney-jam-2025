@@ -19,6 +19,7 @@ var placement_position := Vector3.ZERO
 var structure_instance
 
 var targetting := false
+var is_out_of_bounds := false
 
 func _ready():
 
@@ -44,8 +45,6 @@ func _ready():
 func _process(delta):
 	
 	update_preview_structure()
-	placement_marker.visible = not targetting
-	target_marker.visible = targetting
 	
 	# Map position based on mouse
 	var world_position = plane.intersects_ray(
@@ -54,14 +53,17 @@ func _process(delta):
 
 	var gridmap_position = Vector3(round(world_position.x), 0, round(world_position.z))
 	placement.position = lerp(placement.position, gridmap_position, delta * 40)
+	
+	is_out_of_bounds = out_of_bounds(gridmap_position)
+	if is_out_of_bounds:
+		# don't process anything else below, quite process function for this frame
+		return
 		
 	# If we are currently setting the rotation of a placement
 	if targetting:
 		# Live update rotation to face current mouse grid pos
 		var target_rotation = get_rotation_to_target(gridmap_position, placement_position)
 		structure_instance.rotation = target_rotation
-		
-	
 	
 	if Input.is_action_just_pressed("place"):
 		if not targetting:
@@ -101,10 +103,16 @@ func _process(delta):
 func out_of_bounds(gridmap_position: Vector3):
 	var x = gridmap_position.x
 	var y = gridmap_position.z
-	if x > gridmap.top_left.x and x < gridmap.dimensions.x and y > gridmap.top_left.y and y < gridmap.topleft.y + gridmap.dimensions.y:
-		return false
-	else:
+	if x < gridmap.top_left.x:
 		return true
+	if x >= gridmap.top_left.x + gridmap.dimensions.x:
+		return true
+	if y < gridmap.top_left.y:
+		return true
+	if y >= gridmap.top_left.y + gridmap.dimensions.y:
+		return true
+	else:
+		return false
 
 func get_rotation_to_target(target, source):
 	var dir = (target - source).normalized()
@@ -130,12 +138,20 @@ func get_rotation_to_target(target, source):
 
 # Update the structure visual in the placement marker
 func update_preview_structure():
+	
+	if is_out_of_bounds:
+		placement_marker.visible = false
+		target_marker.visible = false
+	else:
+		placement_marker.visible = not targetting
+		target_marker.visible = targetting
+	
 	# Clear previous structure preview in placement marker
 	for n in structure_container.get_children():
 		structure_container.remove_child(n)
 		
 	# Create new structure preview in placement marker
-	if not targetting:
+	if not targetting and not is_out_of_bounds:
 		var _model = structures[index].scene.instantiate()
 		structure_container.add_child(_model)
 		_model.position.y += 0.25  # place it above the marker
