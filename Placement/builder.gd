@@ -100,6 +100,7 @@ func place_structure(structure: Structure, gridmap_position: Vector3, rotation: 
 		Global.energy_used += structure.energyUse
 		structure_instance.global_position = gridmap.map_to_local(gridmap_position)
 		structure_instance.rotation = rotation
+		structure_instance.on = true
 		instance_container.add_child(structure_instance)
 		
 		gridmap.set_cell_item(
@@ -163,7 +164,6 @@ func update_preview_structure():
 	# Create new structure preview in placement marker (or at clicked location if still targetting)
 	if targetting or not is_out_of_bounds:
 		var _model = structures[index].scene.instantiate()
-		_model.pause()
 		set_transparency(_model, 0.5)
 		# place the preview structure in the initial placement position
 		if targetting:
