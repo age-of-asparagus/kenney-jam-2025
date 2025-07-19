@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0u2n0q6weuwh"]
+[gd_scene load_steps=3 format=3 uid="uid://scj4f0jcts8h"]
 
+[ext_resource type="Script" uid="uid://bppx60dxnxnux" path="res://gun.gd" id="1_dk5gl"]
 [ext_resource type="ArrayMesh" uid="uid://cssr6roxhosdk" path="res://Assets/kenney_space-kit/Models/OBJ format/turret_double.obj" id="1_vk1bi"]
 
 [node name="Gun" type="Node3D"]
+script = ExtResource("1_dk5gl")
 
 [node name="TurretDouble" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_vk1bi")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

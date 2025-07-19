@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cacdspi2cuix2"
-path.s3tc="res://.godot/imported/colormap.png-87f91344c6b3a7ff49731e7db5e6cfc0.s3tc.ctex"
+path.s3tc="res://.godot/imported/colormap.png-875bc1d81fab799501c3078ca643ce5d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/kenney_city-kit-industrial_1.0/Models/FBX format/Textures/colormap.png"
-dest_files=["res://.godot/imported/colormap.png-87f91344c6b3a7ff49731e7db5e6cfc0.s3tc.ctex"]
+source_file="res://Assets/kenney_city-kit-industrial_1.0/Models/FBX format/colormap.png"
+dest_files=["res://.godot/imported/colormap.png-875bc1d81fab799501c3078ca643ce5d.s3tc.ctex"]
 
 [params]
 
