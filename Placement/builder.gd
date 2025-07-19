@@ -1,5 +1,7 @@
 extends Node3D
 
+@onready var placement_marker = $"Placement/Sprite3D-Place"
+@onready var target_marker = $"Placement/Sprite3D-Target"
 @onready var placement = $Placement
 @onready var structure_container = $Placement/StructureContainer
 @export var structures: Array[Structure] = []
@@ -15,8 +17,10 @@ var player:PlayerData
 var plane:Plane # Used for raycasting mouse
 
 # Use for second click to set rotation
-var first_click_position := Vector3.ZERO
+var placement_position := Vector3.ZERO
 var structure_instance
+
+var targetting := false
 
 func _ready():
 	
@@ -37,12 +41,14 @@ func _ready():
 		#
 	#gridmap.mesh_library = mesh_library
 	#
-	update_structure()
+	update_preview_structure()
 	#update_cash()
 	
 func _process(delta):
 	
-	update_structure()
+	update_preview_structure()
+	placement_marker.visible = not targetting
+	target_marker.visible = targetting
 	
 	# Map position based on mouse
 	var world_position = plane.intersects_ray(
@@ -53,13 +59,13 @@ func _process(delta):
 	placement.position = lerp(placement.position, gridmap_position, delta * 40)
 	
 	# If we are currently setting the rotation of a placement
-	if first_click_position and structure_instance != null:
+	if targetting:
 		# Live update rotation to face current mouse grid pos
-		var target_rotation = get_rotation_to_target(gridmap_position, first_click_position)
+		var target_rotation = get_rotation_to_target(gridmap_position, placement_position)
 		structure_instance.rotation = target_rotation
 	
 	if Input.is_action_just_pressed("place"):
-		if first_click_position == Vector3.ZERO:
+		if not targetting:
 			var previous_tile = gridmap.get_cell_item(gridmap_position)
 			print(previous_tile)
 			print(gridmap_position)
@@ -69,21 +75,29 @@ func _process(delta):
 				gridmap.get_orthogonal_index_from_basis(placement.basis)
 			)
 			
-			var structure = structures[index]
+			var structure : Structure = structures[index]
 			structure_instance = structure.scene.instantiate()
 			structure_instance.global_position = gridmap.map_to_local(gridmap_position)
 			instance_container.add_child(structure_instance)
 			
-			first_click_position = gridmap_position
+			placement_position = gridmap_position
+			
+			# Do we need to click a second time to set a target?
+			targetting = structure.target_placement
+	
 						
 		else:
 			# Second click: rotate unit to face this second clicked grid cell
-			var target_rotation = get_rotation_to_target(gridmap_position, first_click_position)
+			var target_rotation = get_rotation_to_target(gridmap_position, placement_position)
 			structure_instance.rotation = target_rotation
+			
+			# done targetting, go back to normal placement
+			targetting = false
 				
 			# Reset for next placement
-			first_click_position = Vector3.ZERO
-			structure_instance = null
+			#placement_position = Vector3.ZERO
+			#structure_instance = null
+			
 
 func get_rotation_to_target(target, source):
 	var dir = (target - source).normalized()
@@ -108,16 +122,18 @@ func get_rotation_to_target(target, source):
 					#return property_value.duplicate()
 
 # Update the structure visual in the placement marker
-func update_structure():
+func update_preview_structure():
 	# Clear previous structure preview in placement marker
 	for n in structure_container.get_children():
 		structure_container.remove_child(n)
 		
 	# Create new structure preview in placement marker
-	var _model = structures[index].scene.instantiate()
-	structure_container.add_child(_model)
-	_model.position.y += 0.25  # place it above the marker
-	set_transparency(_model, 0.5)
+	if not targetting:
+		var _model = structures[index].scene.instantiate()
+		structure_container.add_child(_model)
+		_model.position.y += 0.25  # place it above the marker
+		set_transparency(_model, 0.5)
+		
 	
 func update_cash():
 	pass

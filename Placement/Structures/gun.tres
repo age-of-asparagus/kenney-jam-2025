@@ -8,4 +8,5 @@ script = ExtResource("1_8edom")
 scene = ExtResource("1_1kmin")
 cost = 100
 energyUse = 5
+target_placement = true
 metadata/_custom_type_script = "uid://rmuofr05ey6q"
