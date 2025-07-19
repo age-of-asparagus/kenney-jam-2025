@@ -2,6 +2,7 @@ extends Node3D
 @onready var button_host: Button = $HUD/MarginContainer/MultiplayerHUD/VBoxContainer/ButtonHost
 @onready var button_join: Button = $HUD/MarginContainer/MultiplayerHUD/VBoxContainer/ButtonJoin
 
+
 var peer = ENetMultiplayerPeer.new()
 @export var player_scene : PackedScene
 

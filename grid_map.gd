@@ -1,5 +1,8 @@
 extends GridMap
 
+@export var top_left := Vector2(-7, -6)
+@export var dimensions := Vector2(15, 17)
+
 var grid_mesh_instance: MeshInstance3D
 
 func _ready():
@@ -12,7 +15,7 @@ func _create_grid_mesh():
 
 	# Default grid size if empty
 	if used_cells.is_empty():
-		_build_grid_mesh(-7, -6, 15, 17)
+		_build_grid_mesh(top_left.x, top_left.y, dimensions.x, dimensions.y)
 		return
 
 	# Find bounds of used cells in X and Z

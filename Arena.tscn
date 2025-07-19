@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://7ydjnbrej4yd"]
+[gd_scene load_steps=12 format=3 uid="uid://7ydjnbrej4yd"]
 
 [ext_resource type="Environment" uid="uid://ofyq5pwj11sf" path="res://camera-environment.tres" id="1_bcb0y"]
 [ext_resource type="Script" uid="uid://fxm2dfson1lr" path="res://arena.gd" id="1_u21bi"]
+[ext_resource type="PackedScene" uid="uid://bet1c3pwjtrul" path="res://power_plant.tscn" id="2_18q8f"]
 [ext_resource type="Texture2D" uid="uid://rnkolal5sgro" path="res://Placement/Sprites/selector.png" id="2_u45fm"]
 [ext_resource type="Script" uid="uid://clmauo4kdbkas" path="res://Placement/builder.gd" id="2_vbyki"]
 [ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="3_jycnn"]
@@ -10,8 +11,18 @@
 [ext_resource type="Script" uid="uid://dmhs6he0a444l" path="res://grid_map.gd" id="6_ml6qp"]
 [ext_resource type="Texture2D" uid="uid://dmx4ddve2ejtt" path="res://HUD/coin.png" id="8_tu31c"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qmqq"]
+
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_u21bi")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(10, 1, 26)
+material = SubResource("StandardMaterial3D_1qmqq")
+
+[node name="PowerPlant" parent="." instance=ExtResource("2_18q8f")]
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 0, 0, 0)
 
 [node name="Builder" type="Node3D" parent="." node_paths=PackedStringArray("instance_container", "camera", "gridmap")]
 script = ExtResource("2_vbyki")
@@ -33,12 +44,14 @@ texture = ExtResource("5_8qske")
 [node name="StructureContainer" type="Node3D" parent="Builder/Placement"]
 
 [node name="View" type="Node3D" parent="."]
-transform = Transform3D(-1, 5.01436e-08, -7.16125e-08, 0, 0.819152, 0.573576, 8.74228e-08, 0.573576, -0.819152, 0, 0, 0)
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="View"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
 environment = ExtResource("1_bcb0y")
-fov = 20.0
+projection = 1
+fov = 25.0
+size = 19.0
 
 [node name="GridMap" type="GridMap" parent="."]
 cell_size = Vector3(1, 1, 1)
@@ -46,6 +59,8 @@ cell_center_x = false
 cell_center_y = false
 cell_center_z = false
 script = ExtResource("6_ml6qp")
+top_left = Vector2(-5, -12)
+dimensions = Vector2(10, 26)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 14.5, 0)
@@ -82,6 +97,7 @@ layout_mode = 2
 text = "$10,000"
 
 [node name="MultiplayerHUD" type="Control" parent="HUD/MarginContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
