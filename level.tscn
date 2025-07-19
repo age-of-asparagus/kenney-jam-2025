@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dieckvn6073m1"]
 
-[ext_resource type="PackedScene" uid="uid://b0u2n0q6weuwh" path="res://gun.tscn" id="1_u52ul"]
+[ext_resource type="PackedScene" uid="uid://scj4f0jcts8h" path="res://gun.tscn" id="1_u52ul"]
 [ext_resource type="ArrayMesh" uid="uid://bjdsxeh51a808" path="res://Assets/kenney_space-kit/Models/OBJ format/terrain_sideCliff.obj" id="2_vonw3"]
 [ext_resource type="ArrayMesh" uid="uid://cn4rt38a3owa6" path="res://Assets/kenney_space-kit/Models/OBJ format/terrain_sideCornerInner.obj" id="4_0b4ue"]
 
