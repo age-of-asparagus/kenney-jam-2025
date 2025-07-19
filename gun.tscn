@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://scj4f0jcts8h"]
+[gd_scene load_steps=7 format=3 uid="uid://scj4f0jcts8h"]
 
 [ext_resource type="Script" uid="uid://bppx60dxnxnux" path="res://gun.gd" id="1_dk5gl"]
 [ext_resource type="PackedScene" uid="uid://c6qck16nmert6" path="res://Assets/kenney_space-kit/Models/FBX format/turret_single.fbx" id="2_dk5gl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dk5gl"]
 size = Vector3(0.54503, 0.648254, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4me2t"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywrq"]
+bg_color = Color(0.238305, 0.647006, 0.837893, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dk5gl"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_dk5gl")
@@ -29,6 +38,34 @@ monitoring = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_dk5gl")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -4.0
+offset_right = 32.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_4me2t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iywrq")
+value = 89.06
+show_percentage = false
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_dk5gl")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
