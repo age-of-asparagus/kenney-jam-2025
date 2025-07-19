@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bet1c3pwjtrul"]
+
+[ext_resource type="PackedScene" uid="uid://dldkvdj5gclw3" path="res://Assets/kenney_city-kit-industrial_1.0/Models/GLB format/chimney-large.glb" id="1_e3nn7"]
+[ext_resource type="PackedScene" uid="uid://g0chntmi554" path="res://Assets/kenney_city-kit-industrial_1.0/Models/GLB format/building-e.glb" id="2_khheo"]
+[ext_resource type="PackedScene" uid="uid://cxlk7x63b7q5g" path="res://Assets/kenney_city-kit-industrial_1.0/Models/GLB format/building-h.glb" id="3_d7upa"]
+[ext_resource type="PackedScene" uid="uid://dfwee6i6hp7l" path="res://Assets/kenney_city-kit-industrial_1.0/Models/GLB format/building-i.glb" id="4_jdjpl"]
+[ext_resource type="PackedScene" uid="uid://cc31rkhk8bj7" path="res://Assets/kenney_city-kit-industrial_1.0/Models/GLB format/building-k.glb" id="5_spap2"]
+[ext_resource type="PackedScene" uid="uid://8bli8s8slnjm" path="res://Assets/kenney_space-kit/Models/GLTF format/monorail_trackStraight.glb" id="6_aq7wh"]
+[ext_resource type="PackedScene" uid="uid://djjxe04jcy5v8" path="res://Assets/kenney_space-kit/Models/GLTF format/monorail_trackSupport.glb" id="7_drqpw"]
+[ext_resource type="PackedScene" uid="uid://rhy3rl6tvik8" path="res://Assets/kenney_space-kit/Models/GLTF format/monorail_trackCornerLarge.glb" id="8_owfxk"]
+[ext_resource type="PackedScene" uid="uid://6kiig3lc6p5r" path="res://Assets/kenney_space-kit/Models/GLTF format/monorail_trackSupportCorner.glb" id="9_5y5a5"]
+
+[node name="PowerPlant" type="Node3D"]
+
+[node name="chimney-large2" parent="." instance=ExtResource("1_e3nn7")]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, 0, 1.5)
+
+[node name="chimney-large3" parent="." instance=ExtResource("1_e3nn7")]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, 0, -1.5)
+
+[node name="building-e3" parent="." instance=ExtResource("2_khheo")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 0, -3)
+
+[node name="building-h2" parent="." instance=ExtResource("3_d7upa")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 0, 2.5)
+
+[node name="building-i2" parent="." instance=ExtResource("4_jdjpl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 0, -2.5)
+
+[node name="building-k2" parent="." instance=ExtResource("5_spap2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 2)
+
+[node name="monorail_trackStraight2" parent="." instance=ExtResource("6_aq7wh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0.5, 4.5)
+
+[node name="monorail_trackStraight3" parent="." instance=ExtResource("6_aq7wh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.5, -5)
+
+[node name="monorail_trackSupport2" parent="." instance=ExtResource("7_drqpw")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, 0, -1.5)
+
+[node name="monorail_trackStraight4" parent="." instance=ExtResource("6_aq7wh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0.5, 0)
+
+[node name="monorail_trackSupport4" parent="." instance=ExtResource("7_drqpw")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1, 0, 3.5)
+
+[node name="monorail_trackStraight5" parent="." instance=ExtResource("6_aq7wh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 0.5, -0.5)
+
+[node name="monorail_trackSupport5" parent="." instance=ExtResource("7_drqpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
+
+[node name="monorail_trackSupport3" parent="." instance=ExtResource("7_drqpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="monorail_trackCornerLarge2" parent="." instance=ExtResource("8_owfxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -3.5)
+
+[node name="monorail_trackCornerLarge3" parent="." instance=ExtResource("8_owfxk")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0.5, -0.5)
+
+[node name="monorail_trackStraight6" parent="." instance=ExtResource("6_aq7wh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.15, 0.25, 3.7)
+
+[node name="monorail_trackStraight7" parent="." instance=ExtResource("6_aq7wh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.15, 0.438267, 3.92315)
+
+[node name="monorail_trackSupportCorner2" parent="." instance=ExtResource("9_5y5a5")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -2.1438, 0, -0.692419)
+
+[node name="monorail_trackSupportCorner3" parent="." instance=ExtResource("9_5y5a5")]
+transform = Transform3D(1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, 1, -0.605894, 2.38419e-07, -3.36482)
+metadata/_edit_group_ = true

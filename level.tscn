@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dieckvn6073m1"]
+[gd_scene load_steps=9 format=3 uid="uid://dieckvn6073m1"]
 
 [ext_resource type="PackedScene" uid="uid://scj4f0jcts8h" path="res://gun.tscn" id="1_u52ul"]
 [ext_resource type="ArrayMesh" uid="uid://bjdsxeh51a808" path="res://Assets/kenney_space-kit/Models/OBJ format/terrain_sideCliff.obj" id="2_vonw3"]
 [ext_resource type="ArrayMesh" uid="uid://cn4rt38a3owa6" path="res://Assets/kenney_space-kit/Models/OBJ format/terrain_sideCornerInner.obj" id="4_0b4ue"]
+[ext_resource type="PackedScene" uid="uid://bet1c3pwjtrul" path="res://power_plant.tscn" id="4_f2txt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vonw3"]
 size = Vector3(20, 1, 22)
@@ -11,10 +12,10 @@ size = Vector3(20, 1, 22)
 albedo_color = Color(0.9, 0.51, 0.38, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_oi3di"]
-size = Vector3(20, 1, 20)
+size = Vector3(18, 1, 20)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vonw3"]
-size = Vector3(2, 1, 21)
+size = Vector3(2, 1, 19)
 
 [node name="Level" type="Node3D"]
 
@@ -491,3 +492,6 @@ skeleton = NodePath("../..")
 
 [node name="Gun" parent="." instance=ExtResource("1_u52ul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
+
+[node name="PowerPlant" parent="." instance=ExtResource("4_f2txt")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
