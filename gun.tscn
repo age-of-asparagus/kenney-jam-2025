@@ -21,6 +21,7 @@ health = 3
 firerate = 0.25
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 100.0
 autostart = true
 
 [node name="left_shooter" type="Marker3D" parent="."]

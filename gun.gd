@@ -10,13 +10,16 @@ var bullet_position_index = 0
 	$right_shooter
 ]
 
+var on = false
+
 func _ready():
-	$Timer.wait_time = firerate
+	if on:
+		$Timer.wait_time = firerate
 
 func _physics_process(delta):
-	pass
-	#if health <= 0:
-		#queue_free()
+	if on:
+		if health <= 0:
+			queue_free()
 
 func shoot():
 	var Bullet = bullet.instantiate()
@@ -32,4 +35,5 @@ func get_next_bullet_position():
 		bullet_position_index = 0
 
 func _on_timer_timeout():
-	shoot()
+	if on:
+		shoot()
