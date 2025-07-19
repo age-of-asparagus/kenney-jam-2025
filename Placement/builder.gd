@@ -14,6 +14,10 @@ var player:PlayerData
 
 var plane:Plane # Used for raycasting mouse
 
+# Use for second click to set rotation
+var first_click_position := Vector3.ZERO
+var structure_instance
+
 func _ready():
 	
 	player = PlayerData.new()
@@ -48,29 +52,48 @@ func _process(delta):
 	var gridmap_position = Vector3(round(world_position.x), 0, round(world_position.z))
 	placement.position = lerp(placement.position, gridmap_position, delta * 40)
 	
-	print(gridmap_position)
+	# If we are currently setting the rotation of a placement
+	if first_click_position and structure_instance != null:
+		# Live update rotation to face current mouse grid pos
+		var target_rotation = get_rotation_to_target(gridmap_position, first_click_position)
+		structure_instance.rotation = target_rotation
 	
 	if Input.is_action_just_pressed("place"):
-		
-		var previous_tile = gridmap.get_cell_item(gridmap_position)
-		print(previous_tile)
-		print(gridmap_position)
-		gridmap.set_cell_item(
-			gridmap_position, 
-			index, 
-			gridmap.get_orthogonal_index_from_basis(placement.basis)
-		)
-		
-		var structure = structures[index]
-		var structure_instance = structure.scene.instantiate()
-		structure_instance.global_position = gridmap.map_to_local(gridmap_position)
-		instance_container.add_child(structure_instance)
-		
-		
-		#if previous_tile != index:
-			#player.cash -= structures[index].price
-			#update_cash()
+		if first_click_position == Vector3.ZERO:
+			var previous_tile = gridmap.get_cell_item(gridmap_position)
+			print(previous_tile)
+			print(gridmap_position)
+			gridmap.set_cell_item(
+				gridmap_position, 
+				index, 
+				gridmap.get_orthogonal_index_from_basis(placement.basis)
+			)
+			
+			var structure = structures[index]
+			structure_instance = structure.scene.instantiate()
+			structure_instance.global_position = gridmap.map_to_local(gridmap_position)
+			instance_container.add_child(structure_instance)
+			
+			first_click_position = gridmap_position
+						
+		else:
+			# Second click: rotate unit to face this second clicked grid cell
+			var target_rotation = get_rotation_to_target(gridmap_position, first_click_position)
+			structure_instance.rotation = target_rotation
+				
+			# Reset for next placement
+			first_click_position = Vector3.ZERO
+			structure_instance = null
 
+func get_rotation_to_target(target, source):
+	var dir = (target - source).normalized()
+	if dir.length() > 0:
+		var dir_2d = Vector2(dir.x, dir.z)
+		var angle = Vector2(0, 1).angle_to(dir_2d)
+		return Vector3(0, -angle, 0)
+	else:
+		return Vector3.ZERO
+	
 
 ## Retrieve the mesh from a PackedScene, used for dynamically creating a MeshLibrary
 #func get_mesh(packed_scene):
