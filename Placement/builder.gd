@@ -48,8 +48,9 @@ func _process(delta):
 	var gridmap_position = Vector3(round(world_position.x), 0, round(world_position.z))
 	placement.position = lerp(placement.position, gridmap_position, delta * 40)
 	
+	print(gridmap_position)
+	
 	if Input.is_action_just_pressed("place"):
-		print("placing!")
 		
 		var previous_tile = gridmap.get_cell_item(gridmap_position)
 		print(previous_tile)
@@ -102,19 +103,25 @@ func update_cash():
 # recursively traverses all children of a Node and modifies the 
 # transparency of any MeshInstance3D (or similar) it finds:
 func set_transparency(node: Node, alpha: float) -> void:
+	if node is MeshInstance3D:
+		var mesh = node.mesh
+		if mesh:
+			for surface_index in mesh.get_surface_count():
+				var mat = node.get_active_material(surface_index)
+				if mat == null:
+					continue
+				var new_mat = mat.duplicate()
+				node.set_surface_override_material(surface_index, new_mat)
+
+				new_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+				new_mat.albedo_color.a = alpha
+				new_mat.flags_transparent = true
+				new_mat.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
+				new_mat.alpha_scissor_threshold = 0.0
+				new_mat.cull_mode = BaseMaterial3D.CULL_BACK
+				new_mat.emission_enabled = false
+				new_mat.shading_mode = BaseMaterial3D.SHADING_MODE_PER_PIXEL
+
+	# Recurse into all children
 	for child in node.get_children():
-		if child is MeshInstance3D:
-			var mat = child.get_active_material(0)
-			if mat == null:
-				continue
-
-			# Duplicate to avoid affecting other instances
-			mat = mat.duplicate()
-			child.set_surface_override_material(0, mat)
-
-			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-			var color = mat.albedo_color
-			color.a = alpha
-			mat.albedo_color = color
-		else:
-			set_transparency(child, alpha)
+		set_transparency(child, alpha)

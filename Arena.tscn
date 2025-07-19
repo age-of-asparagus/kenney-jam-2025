@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://7ydjnbrej4yd"]
+[gd_scene load_steps=7 format=3 uid="uid://7ydjnbrej4yd"]
 
 [ext_resource type="Environment" uid="uid://ofyq5pwj11sf" path="res://camera-environment.tres" id="1_bcb0y"]
 [ext_resource type="Texture2D" uid="uid://rnkolal5sgro" path="res://Placement/Sprites/selector.png" id="2_u45fm"]
 [ext_resource type="Script" uid="uid://clmauo4kdbkas" path="res://Placement/builder.gd" id="2_vbyki"]
 [ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="3_jycnn"]
 [ext_resource type="Resource" uid="uid://7brrr3hnpk8d" path="res://Placement/Structures/gun.tres" id="4_ml6qp"]
+[ext_resource type="Script" uid="uid://dmhs6he0a444l" path="res://grid_map.gd" id="6_ml6qp"]
 
 [node name="Arena" type="Node3D"]
 
@@ -36,6 +37,7 @@ cell_size = Vector3(1, 1, 1)
 cell_center_x = false
 cell_center_y = false
 cell_center_z = false
+script = ExtResource("6_ml6qp")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 14.5, 0)
