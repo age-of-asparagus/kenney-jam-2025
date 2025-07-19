@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://scj4f0jcts8h"]
+[gd_scene load_steps=4 format=3 uid="uid://scj4f0jcts8h"]
 
 [ext_resource type="Script" uid="uid://bppx60dxnxnux" path="res://gun.gd" id="1_dk5gl"]
 [ext_resource type="PackedScene" uid="uid://c6qck16nmert6" path="res://Assets/kenney_space-kit/Models/FBX format/turret_single.fbx" id="2_dk5gl"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dk5gl"]
+size = Vector3(0.54503, 0.648254, 1)
+
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_dk5gl")
+health = 3
+firerate = 0.25
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -17,5 +22,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0.49, 0.5)
 
 [node name="turret_single" parent="." instance=ExtResource("2_dk5gl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1.5)
+
+[node name="Area3D" type="Area3D" parent="."]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_dk5gl")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

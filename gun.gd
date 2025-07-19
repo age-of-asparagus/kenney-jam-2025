@@ -1,11 +1,22 @@
 extends Node3D
 
+@export var health : int
+@export var firerate : float
+
 var bullet = preload("res://bullet.tscn")
 var bullet_position_index = 0
 @onready var bullet_position =[
 	$left_shooter,
 	$right_shooter
 ]
+
+func _ready():
+	$Timer.wait_time = firerate
+
+func _physics_process(delta):
+	pass
+	#if health <= 0:
+		#queue_free()
 
 func shoot():
 	var Bullet = bullet.instantiate()

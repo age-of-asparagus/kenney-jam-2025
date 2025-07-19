@@ -8,6 +8,8 @@ size = Vector3(0.1, 0.1, 0.25)
 
 [node name="bullet" type="Node3D"]
 script = ExtResource("1_v8qja")
+damage = 1
+health = 1
 speed = 0.1
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -18,3 +20,5 @@ shape = SubResource("BoxShape3D_v8qja")
 
 [node name="alien" parent="." instance=ExtResource("2_v8qja")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.516223, -0.0889335, 0.388157)
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
