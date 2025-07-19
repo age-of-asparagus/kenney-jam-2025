@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ydjnbrej4yd"]
+[gd_scene load_steps=12 format=3 uid="uid://7ydjnbrej4yd"]
 
 [ext_resource type="Environment" uid="uid://ofyq5pwj11sf" path="res://camera-environment.tres" id="1_bcb0y"]
 [ext_resource type="Script" uid="uid://fxm2dfson1lr" path="res://arena.gd" id="1_u21bi"]
@@ -7,8 +7,9 @@
 [ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="3_jycnn"]
 [ext_resource type="Resource" uid="uid://7brrr3hnpk8d" path="res://Placement/Structures/gun.tres" id="4_ml6qp"]
 [ext_resource type="Texture2D" uid="uid://igtoa1cyljsw" path="res://Placement/Sprites/crosshair089-outline.png" id="5_8qske"]
+[ext_resource type="Resource" uid="uid://11cga3vnjmoa" path="res://Placement/Structures/power_generator.tres" id="5_18q8f"]
 [ext_resource type="Script" uid="uid://dmhs6he0a444l" path="res://grid_map.gd" id="6_ml6qp"]
-[ext_resource type="PackedScene" uid="uid://du8uqo82hyx75" path="res://hud.tscn" id="9_u21bi"]
+[ext_resource type="PackedScene" uid="uid://cmhqta4hq8xio" path="res://hud.tscn" id="9_u21bi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qmqq"]
 
@@ -22,7 +23,7 @@ material = SubResource("StandardMaterial3D_1qmqq")
 
 [node name="Builder" type="Node3D" parent="." node_paths=PackedStringArray("instance_container", "camera", "gridmap")]
 script = ExtResource("2_vbyki")
-structures = Array[ExtResource("3_jycnn")]([ExtResource("4_ml6qp")])
+structures = Array[ExtResource("3_jycnn")]([ExtResource("4_ml6qp"), ExtResource("5_18q8f")])
 instance_container = NodePath("../UnitContainer")
 camera = NodePath("../View/Camera3D")
 gridmap = NodePath("../GridMap")

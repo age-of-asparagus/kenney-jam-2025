@@ -5,7 +5,7 @@ extends Node3D
 @onready var placement = $Placement
 @onready var preview_container = $Placement/StructureContainer
 @export var structures: Array[Structure] = []
-var index:int = 0 # Index of structure being built within the structures Array
+var index:int = 1 # Index of structure being built within the structures Array
 
 @export var instance_container : Node3D
 @export var camera:Camera3D # Used for raycasting mouse
@@ -97,6 +97,7 @@ func _process(delta):
 func place_structure(structure: Structure, gridmap_position: Vector3, rotation: Vector3):
 		var structure_instance = structure.scene.instantiate()
 		Global.cash -= structure.cost
+		Global.energy_used += structure.energyUse
 		structure_instance.global_position = gridmap.map_to_local(gridmap_position)
 		structure_instance.rotation = rotation
 		instance_container.add_child(structure_instance)
@@ -162,6 +163,7 @@ func update_preview_structure():
 	# Create new structure preview in placement marker (or at clicked location if still targetting)
 	if targetting or not is_out_of_bounds:
 		var _model = structures[index].scene.instantiate()
+		_model.pause()
 		set_transparency(_model, 0.5)
 		# place the preview structure in the initial placement position
 		if targetting:
