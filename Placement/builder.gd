@@ -3,7 +3,7 @@ extends Node3D
 @onready var placement_marker = $"Placement/Sprite3D-Place"
 @onready var target_marker = $"Placement/Sprite3D-Target"
 @onready var placement = $Placement
-@onready var structure_container = $Placement/StructureContainer
+@onready var preview_container = $Placement/StructureContainer
 @export var structures: Array[Structure] = []
 var index:int = 0 # Index of structure being built within the structures Array
 
@@ -16,7 +16,8 @@ var plane:Plane # Used for raycasting mouse
 
 # Use for second click to set rotation
 var placement_position := Vector3.ZERO
-var structure_instance
+var structure_position := Vector3.ZERO
+var preview_instance
 
 var targetting := false
 var is_out_of_bounds := false
@@ -40,7 +41,6 @@ func _ready():
 	#gridmap.mesh_library = mesh_library
 	#
 	update_preview_structure()
-	#update_cash()
 	
 func _process(delta):
 	
@@ -56,50 +56,56 @@ func _process(delta):
 	
 	is_out_of_bounds = out_of_bounds(gridmap_position)
 	if is_out_of_bounds:
-		# don't process anything else below, quite process function for this frame
+		# don't process anything else below, quit process function for this frame
 		return
 		
 	# If we are currently setting the rotation of a placement
 	if targetting:
 		# Live update rotation to face current mouse grid pos
-		var target_rotation = get_rotation_to_target(gridmap_position, placement_position)
-		structure_instance.rotation = target_rotation
+		var target_rotation = get_rotation_to_target(gridmap_position, structure_position)
+		preview_instance.rotation = target_rotation
+	
+	var structure : Structure = structures[index]
 	
 	if Input.is_action_just_pressed("place"):
+		
 		if not targetting:
-			var previous_tile = gridmap.get_cell_item(gridmap_position)
-			print(previous_tile)
-			print(gridmap_position)
-			gridmap.set_cell_item(
-				gridmap_position, 
-				index, 
-				gridmap.get_orthogonal_index_from_basis(placement.basis)
-			)
 			
-			var structure : Structure = structures[index]
-			structure_instance = structure.scene.instantiate()
-			Global.cash -= structure.cost
-			structure_instance.global_position = gridmap.map_to_local(gridmap_position)
-			instance_container.add_child(structure_instance)
-			
-			placement_position = gridmap_position
-			
-			# Do we need to click a second time to set a target?
-			targetting = structure.target_placement
-	
+			# if this structure needs to target, then we need to place a preview first
+			if structure.target_placement:
+
+				# We need to click a second time to set a target
+				targetting = true
+				# Store the placement position so we can instantiate the structure there
+				# and calculate the target angle
+				structure_position = gridmap_position
+				
+			# else the strucutre does NOT need to target and we can place it right away
+			else:
+				place_structure(structure, gridmap_position, Vector3.ZERO)
+					
 						
 		else:
 			# Second click: rotate unit to face this second clicked grid cell
-			var target_rotation = get_rotation_to_target(gridmap_position, placement_position)
-			structure_instance.rotation = target_rotation
+			var target_rotation = get_rotation_to_target(gridmap_position, structure_position)
+			place_structure(structure, structure_position, target_rotation)
 			
 			# done targetting, go back to normal placement
 			targetting = false
-				
-			# Reset for next placement
-			#placement_position = Vector3.ZERO
-			#structure_instance = null
-			
+
+
+func place_structure(structure: Structure, gridmap_position: Vector3, rotation: Vector3):
+		var structure_instance = structure.scene.instantiate()
+		Global.cash -= structure.cost
+		structure_instance.global_position = gridmap.map_to_local(gridmap_position)
+		structure_instance.rotation = rotation
+		instance_container.add_child(structure_instance)
+		
+		gridmap.set_cell_item(
+			gridmap_position, 
+			index, 
+			gridmap.get_orthogonal_index_from_basis(placement.basis)
+		)
 			
 func out_of_bounds(gridmap_position: Vector3):
 	var x = gridmap_position.x
@@ -148,20 +154,27 @@ func update_preview_structure():
 		target_marker.visible = targetting
 	
 	# Clear previous structure preview in placement marker
-	for n in structure_container.get_children():
-		structure_container.remove_child(n)
+	for n in preview_container.get_children():
+		preview_container.remove_child(n)
+	if preview_instance:
+		preview_instance.queue_free()
 		
-	# Create new structure preview in placement marker
-	if not targetting and not is_out_of_bounds:
+	# Create new structure preview in placement marker (or at clicked location if still targetting)
+	if targetting or not is_out_of_bounds:
 		var _model = structures[index].scene.instantiate()
-		structure_container.add_child(_model)
-		_model.position.y += 0.25  # place it above the marker
 		set_transparency(_model, 0.5)
+		# place the preview structure in the initial placement position
+		if targetting:
+			_model.global_position = gridmap.map_to_local(structure_position)
+			instance_container.add_child(_model)
+			# so we can delete it after
+			preview_instance = _model
+		elif not is_out_of_bounds:
+			_model.position.y += 0.25  # place it above the marker
+			preview_container.add_child(_model)
+			
 		
-	
-func update_cash():
-	pass
-	#cash_display.text = "$" + str(map.cash)
+
 	
 # recursively traverses all children of a Node and modifies the 
 # transparency of any MeshInstance3D (or similar) it finds:

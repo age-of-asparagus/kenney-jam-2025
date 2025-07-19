@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://7brrr3hnpk8d" path="res://Placement/Structures/gun.tres" id="4_ml6qp"]
 [ext_resource type="Texture2D" uid="uid://igtoa1cyljsw" path="res://Placement/Sprites/crosshair089-outline.png" id="5_8qske"]
 [ext_resource type="Script" uid="uid://dmhs6he0a444l" path="res://grid_map.gd" id="6_ml6qp"]
-[ext_resource type="PackedScene" uid="uid://cmhqta4hq8xio" path="res://hud.tscn" id="9_u21bi"]
+[ext_resource type="PackedScene" uid="uid://du8uqo82hyx75" path="res://hud.tscn" id="9_u21bi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qmqq"]
 
