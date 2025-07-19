@@ -78,6 +78,7 @@ func _process(delta):
 			
 			var structure : Structure = structures[index]
 			structure_instance = structure.scene.instantiate()
+			Global.cash -= structure.cost
 			structure_instance.global_position = gridmap.map_to_local(gridmap_position)
 			instance_container.add_child(structure_instance)
 			
