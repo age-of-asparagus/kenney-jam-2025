@@ -1,32 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dieckvn6073m1"]
+[gd_scene load_steps=8 format=3 uid="uid://dieckvn6073m1"]
 
 [ext_resource type="PackedScene" uid="uid://b0u2n0q6weuwh" path="res://gun.tscn" id="1_u52ul"]
-
-[sub_resource type="Environment" id="Environment_u52ul"]
-background_energy_multiplier = 0.0
-ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
+[ext_resource type="ArrayMesh" uid="uid://bjdsxeh51a808" path="res://Assets/kenney_space-kit/Models/OBJ format/terrain_sideCliff.obj" id="2_vonw3"]
+[ext_resource type="ArrayMesh" uid="uid://cn4rt38a3owa6" path="res://Assets/kenney_space-kit/Models/OBJ format/terrain_sideCornerInner.obj" id="4_0b4ue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vonw3"]
-size = Vector3(16, 1, 16)
+size = Vector3(20, 1, 22)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b4ue"]
+albedo_color = Color(0.9, 0.51, 0.38, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_oi3di"]
-size = Vector3(16, 1, 16)
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vonw3"]
+size = Vector3(2, 1, 21)
 
 [node name="Level" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u52ul")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5, 68, 6)
-light_energy = 1.646
+transform = Transform3D(0.965926, 0.0669873, 0.25, -0.258819, 0.25, 0.933013, 0, -0.965926, 0.258819, 5, 68, 6)
+shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-2.18557e-08, -0.5, 0.866025, 3.78552e-08, 0.866025, 0.5, -1, 4.37114e-08, -1.4013e-45, 9, 2, 0)
+transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 3.09086e-08, 0.707107, 0.707107, -1, 4.37114e-08, 1.77636e-15, 15, 15, 0)
+projection = 1
+fov = 66.5
+size = 11.476
 
 [node name="Floor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+metadata/_edit_group_ = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
 
@@ -34,7 +38,456 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_vonw3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D"]
+material_overlay = SubResource("StandardMaterial3D_0b4ue")
 mesh = SubResource("BoxMesh_oi3di")
+
+[node name="Floor  Side" type="Node3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Floor  Side"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0.5, 0)
+material_overlay = SubResource("StandardMaterial3D_0b4ue")
+mesh = SubResource("BoxMesh_vonw3")
+skeleton = NodePath("")
+
+[node name="Floor  Side2" type="Node3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Floor  Side2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0.5, 0)
+material_overlay = SubResource("StandardMaterial3D_0b4ue")
+mesh = SubResource("BoxMesh_vonw3")
+skeleton = NodePath("")
+
+[node name="Floor  Side3" type="Node3D" parent="Floor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -19.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Floor  Side3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0.5, 0)
+material_overlay = SubResource("StandardMaterial3D_0b4ue")
+mesh = SubResource("BoxMesh_vonw3")
+skeleton = NodePath("")
+
+[node name="Floor  Side4" type="Node3D" parent="Floor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/Floor  Side4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0.5, 0)
+material_overlay = SubResource("StandardMaterial3D_0b4ue")
+mesh = SubResource("BoxMesh_vonw3")
+skeleton = NodePath("")
+
+[node name="ArenaWalls" type="Node3D" parent="."]
+
+[node name="8-Wall5" type="Node3D" parent="ArenaWalls"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 0, 8.5)
+metadata/_edit_group_ = true
+
+[node name="TerrainSideCliff" type="MeshInstance3D" parent="ArenaWalls/8-Wall5"]
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff2" type="MeshInstance3D" parent="ArenaWalls/8-Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff3" type="MeshInstance3D" parent="ArenaWalls/8-Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff4" type="MeshInstance3D" parent="ArenaWalls/8-Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff5" type="MeshInstance3D" parent="ArenaWalls/8-Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff6" type="MeshInstance3D" parent="ArenaWalls/8-Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff7" type="MeshInstance3D" parent="ArenaWalls/8-Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff8" type="MeshInstance3D" parent="ArenaWalls/8-Wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1.43051e-06)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="8-Wall4" type="Node3D" parent="ArenaWalls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6.5, 0, 8.5)
+
+[node name="TerrainSideCliff" type="MeshInstance3D" parent="ArenaWalls/8-Wall4"]
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff2" type="MeshInstance3D" parent="ArenaWalls/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff3" type="MeshInstance3D" parent="ArenaWalls/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff4" type="MeshInstance3D" parent="ArenaWalls/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff5" type="MeshInstance3D" parent="ArenaWalls/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff6" type="MeshInstance3D" parent="ArenaWalls/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff7" type="MeshInstance3D" parent="ArenaWalls/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="TerrainSideCliff8" type="MeshInstance3D" parent="ArenaWalls/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1.43051e-06)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../..")
+
+[node name="4x8-Wall" type="Node3D" parent="ArenaWalls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 0, 7)
+metadata/_edit_group_ = true
+
+[node name="8-Wall" type="Node3D" parent="ArenaWalls/4x8-Wall"]
+metadata/_edit_group_ = true
+
+[node name="TerrainSideCliff" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall"]
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff2" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff3" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff4" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff5" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff6" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff7" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff8" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1.43051e-06)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="8-Wall2" type="Node3D" parent="ArenaWalls/4x8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -9.53674e-07)
+visible = false
+metadata/_edit_group_ = true
+
+[node name="TerrainSideCliff" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall2"]
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff2" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff3" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff4" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff5" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff6" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff7" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff8" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1.43051e-06)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="8-Wall3" type="Node3D" parent="ArenaWalls/4x8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="TerrainSideCliff" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall3"]
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff2" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff3" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff4" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff5" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff6" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff7" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff8" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1.43051e-06)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="8-Wall4" type="Node3D" parent="ArenaWalls/4x8-Wall"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.5, 0, 1.5)
+metadata/_edit_group_ = true
+
+[node name="TerrainSideCliff" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall4"]
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff2" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff3" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff4" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff5" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff6" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff7" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff8" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall/8-Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1.43051e-06)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="4x8-Wall2" type="Node3D" parent="ArenaWalls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, -7)
+metadata/_edit_group_ = true
+
+[node name="8-Wall" type="Node3D" parent="ArenaWalls/4x8-Wall2"]
+
+[node name="TerrainSideCliff" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall"]
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff2" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff3" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff4" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff5" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff6" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff7" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff8" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1.43051e-06)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="8-Wall2" type="Node3D" parent="ArenaWalls/4x8-Wall2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 0, 7.5)
+
+[node name="TerrainSideCliff" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall2"]
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff2" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff3" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff4" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff5" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff6" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff7" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff8" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1.43051e-06)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="8-Wall3" type="Node3D" parent="ArenaWalls/4x8-Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="TerrainSideCliff" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall3"]
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff2" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff3" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff4" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff5" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff6" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff7" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9.53674e-07)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="TerrainSideCliff8" type="MeshInstance3D" parent="ArenaWalls/4x8-Wall2/8-Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1.43051e-06)
+mesh = ExtResource("2_vonw3")
+skeleton = NodePath("../../../..")
+
+[node name="d" type="MeshInstance3D" parent="ArenaWalls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 0, 9)
+mesh = ExtResource("4_0b4ue")
+skeleton = NodePath("../..")
+
+[node name="d4" type="MeshInstance3D" parent="ArenaWalls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -7.5, 0, 9)
+mesh = ExtResource("4_0b4ue")
+skeleton = NodePath("../..")
+
+[node name="d2" type="MeshInstance3D" parent="ArenaWalls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -9)
+mesh = ExtResource("4_0b4ue")
+skeleton = NodePath("../..")
+
+[node name="d3" type="MeshInstance3D" parent="ArenaWalls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 0, -9)
+mesh = ExtResource("4_0b4ue")
+skeleton = NodePath("../..")
 
 [node name="Gun" parent="." instance=ExtResource("1_u52ul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
