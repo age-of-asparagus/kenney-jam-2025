@@ -1,15 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://scj4f0jcts8h"]
 
 [ext_resource type="Script" uid="uid://bppx60dxnxnux" path="res://gun.gd" id="1_dk5gl"]
-[ext_resource type="ArrayMesh" uid="uid://cssr6roxhosdk" path="res://Assets/kenney_space-kit/Models/OBJ format/turret_double.obj" id="1_vk1bi"]
+[ext_resource type="PackedScene" uid="uid://c6qck16nmert6" path="res://Assets/kenney_space-kit/Models/FBX format/turret_single.fbx" id="2_dk5gl"]
 
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_dk5gl")
 
-[node name="TurretDouble" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_vk1bi")
-
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="left_shooter" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.49, 0.5)
+
+[node name="right_shooter" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0.49, 0.5)
+
+[node name="turret_single" parent="." instance=ExtResource("2_dk5gl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1.5)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
