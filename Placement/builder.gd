@@ -5,7 +5,7 @@ extends Node3D
 @onready var placement = $Placement
 @onready var preview_container = $Placement/StructureContainer
 @export var structures: Array[Structure] = []
-var index:int = 1 # Index of structure being built within the structures Array
+var index:int = 0 # Index of structure being built within the structures Array
 
 @export var instance_container : Node3D
 @export var camera:Camera3D # Used for raycasting mouse
@@ -101,6 +101,7 @@ func place_structure(structure: Structure, gridmap_position: Vector3, rotation: 
 		structure_instance.global_position = gridmap.map_to_local(gridmap_position)
 		structure_instance.rotation = rotation
 		structure_instance.on = true
+		structure_instance.start()
 		instance_container.add_child(structure_instance)
 		
 		gridmap.set_cell_item(

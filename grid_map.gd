@@ -5,6 +5,8 @@ extends GridMap
 
 var grid_mesh_instance: MeshInstance3D
 
+
+
 func _ready():
 	grid_mesh_instance = MeshInstance3D.new()
 	add_child(grid_mesh_instance)

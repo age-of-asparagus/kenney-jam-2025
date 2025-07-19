@@ -11,9 +11,12 @@ var bullet_position_index = 0
 ]
 
 var on = false
+var enemy = false
 
-func _ready():
+func start():
 	if on:
+		if enemy:
+			$Area3D.collision_layer = "Enemy_object"
 		$Timer.wait_time = firerate
 
 func _physics_process(delta):
@@ -26,6 +29,8 @@ func shoot():
 	get_next_bullet_position()
 	Bullet.global_position = bullet_position[bullet_position_index].global_position
 	Bullet.rotation = rotation
+	#if enemy:
+		#Bullet.co
 	get_tree().current_scene.add_child(Bullet)
 
 

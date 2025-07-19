@@ -38,7 +38,9 @@ place={
 [layer_names]
 
 2d_physics/layer_1="Enemy_object"
+3d_physics/layer_1="Own_object"
 2d_physics/layer_2="Own_object"
+3d_physics/layer_2="Enemy_object"
 
 [rendering]
 

@@ -4,7 +4,7 @@ extends Node3D
 @export var power_generated = 10
 var on = false
 
-func _ready():
+func start():
 	if on:
 		Global.total_energy += power_generated
 
