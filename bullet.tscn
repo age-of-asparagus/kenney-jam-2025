@@ -21,4 +21,10 @@ shape = SubResource("BoxShape3D_v8qja")
 [node name="alien" parent="." instance=ExtResource("2_v8qja")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.516223, -0.0889335, 0.388157)
 
+[node name="offscreen_timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="offscreen_timer" to="." method="_on_offscreen_timer_timeout"]

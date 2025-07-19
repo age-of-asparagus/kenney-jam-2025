@@ -12,3 +12,7 @@ func _physics_process(delta):
 
 func _on_area_3d_area_entered(area):
 	area.get_owner().health -= damage
+
+
+func _on_offscreen_timer_timeout():
+	queue_free()
