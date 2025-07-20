@@ -8,8 +8,7 @@ var artillery = preload("res://artillery.tscn")
 
 func _ready():
 	randomize()
-	$Gun.start()
-	$Gun2.start()
+
 
 
 
