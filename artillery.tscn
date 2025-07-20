@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvxrjtj31xq3a"]
+[gd_scene load_steps=7 format=3 uid="uid://c7ggsmvkv8wle"]
 
-[ext_resource type="Script" path="res://artillery.gd" id="1_yeks2"]
+[ext_resource type="Script" uid="uid://dgklqhiwxl8k3" path="res://artillery.gd" id="1_yeks2"]
 [ext_resource type="PackedScene" uid="uid://c10lntb35t7xc" path="res://Assets/kenney_space-kit/Models/GLTF format/crater.glb" id="2_4nyb4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d6ack"]
@@ -19,8 +19,6 @@ viewport_path = NodePath("SubViewport")
 script = ExtResource("1_yeks2")
 max_health = 15
 firerate = 3.0
-on = null
-enemy = null
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -33,10 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1.5)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 100.0
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-billboard = 1
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -58,10 +52,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_4me2t")
 theme_override_styles/fill = SubResource("StyleBoxFlat_iywrq")
-value = 89.06
+value = 100.0
 show_percentage = false
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_yeks2")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
