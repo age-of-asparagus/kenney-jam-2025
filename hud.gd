@@ -48,3 +48,4 @@ func deselect_structure():
 func _on_structure_selector_item_selected(index: int) -> void:
 	var structure = structures[index]
 	emit_signal("structure_selected", structure)
+	$AudioStreamPlayer.play()
