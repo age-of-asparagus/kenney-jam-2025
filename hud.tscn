@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dmx4ddve2ejtt" path="res://HUD/coin.png" id="1_37p78"]
 [ext_resource type="Script" uid="uid://ccksei7awy3lt" path="res://hud.gd" id="1_64ctp"]
 [ext_resource type="Texture2D" uid="uid://354b6uumkvk2" path="res://Assets/kenney_city-kit-industrial_1.0/Models/Textures/variation-c.png" id="3_8sq4i"]
-[ext_resource type="Script" uid="uid://bdn6eyvaqsp0u" path="res://structure_selector.gd" id="6_1xsix"]
+[ext_resource type="Script" path="res://structure_selector.gd" id="6_1xsix"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2258"]
 bg_color = Color(0, 0, 0, 0.309804)

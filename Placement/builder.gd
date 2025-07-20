@@ -101,8 +101,8 @@ func place_structure(structure: Structure, gridmap_position: Vector3, rotation: 
 		structure_instance.global_position = gridmap.map_to_local(gridmap_position)
 		structure_instance.rotation = rotation
 		structure_instance.on = true
-		structure_instance.start()
 		instance_container.add_child(structure_instance)
+		structure_instance.start()
 		
 		gridmap.set_cell_item(
 			gridmap_position, 

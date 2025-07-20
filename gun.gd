@@ -1,4 +1,5 @@
 extends Node3D
+@onready var timer = $Timer
 
 @export var health : int
 @export var firerate : float
@@ -10,14 +11,16 @@ var bullet_position_index = 0
 	$right_shooter
 ]
 
-var on = false
-var enemy = false
+@export var on := false
+@export var enemy := false
 
 func start():
 	if on:
 		if enemy:
-			$Area3D.collision_layer = "Enemy_object"
+			$Area3D.set_collision_layer_value(1,false)
+			$Area3D.set_collision_layer_value(2,true)
 		$Timer.wait_time = firerate
+		timer.start()
 
 func _physics_process(delta):
 	if on:
@@ -29,8 +32,12 @@ func shoot():
 	get_next_bullet_position()
 	Bullet.global_position = bullet_position[bullet_position_index].global_position
 	Bullet.rotation = rotation
-	#if enemy:
-		#Bullet.co
+	if enemy:
+		print("hi")
+		Bullet.get_node("Area3D").set_collision_layer_value(1,false)
+		Bullet.get_node("Area3D").set_collision_layer_value(2,true)
+		Bullet.get_node("Area3D").set_collision_mask_value(1,true)
+		Bullet.get_node("Area3D").set_collision_mask_value(2,false)
 	get_tree().current_scene.add_child(Bullet)
 
 

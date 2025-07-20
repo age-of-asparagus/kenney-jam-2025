@@ -14,6 +14,7 @@ func _on_area_3d_area_entered(area):
 	if "on" in area.get_owner():
 		if area.get_owner().on:
 			area.get_owner().health -= damage
+			queue_free()
 	else:
 		area.get_owner().health -= damage
 

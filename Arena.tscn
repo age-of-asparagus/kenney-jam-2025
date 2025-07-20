@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7ydjnbrej4yd"]
+[gd_scene load_steps=13 format=3 uid="uid://7ydjnbrej4yd"]
 
 [ext_resource type="Environment" uid="uid://ofyq5pwj11sf" path="res://camera-environment.tres" id="1_bcb0y"]
 [ext_resource type="Script" uid="uid://fxm2dfson1lr" path="res://arena.gd" id="1_u21bi"]
@@ -13,9 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://scj4f0jcts8h" path="res://gun.tscn" id="11_1qmqq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qmqq"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_tkj6m"]
-viewport_path = NodePath("SubViewport")
 
 [node name="Arena" type="Node3D"]
 script = ExtResource("1_u21bi")
@@ -71,13 +68,5 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 [node name="HUD" parent="." instance=ExtResource("9_u21bi")]
 
 [node name="Gun" parent="." instance=ExtResource("11_1qmqq")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6)
-
-[node name="Timer" parent="Gun" index="0"]
-wait_time = 0.25
-
-[node name="Sprite3D" parent="Gun" index="6"]
-texture = SubResource("ViewportTexture_tkj6m")
-
-[editable path="Gun"]
-[editable path="Gun/turret_single"]
+on = true
+enemy = true
