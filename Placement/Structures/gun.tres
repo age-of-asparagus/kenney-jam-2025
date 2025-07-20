@@ -1,15 +1,13 @@
-[gd_resource type="Resource" script_class="Structure" load_steps=4 format=3 uid="uid://7brrr3hnpk8d"]
+[gd_resource type="Resource" script_class="Structure" load_steps=3 format=3 uid="uid://7brrr3hnpk8d"]
 
 [ext_resource type="PackedScene" uid="uid://scj4f0jcts8h" path="res://gun.tscn" id="1_1kmin"]
 [ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="1_8edom"]
-[ext_resource type="Texture2D" uid="uid://dh7frdvcem4jb" path="res://Assets/kenney_space-kit/Side/turret_single.png" id="1_fi7p4"]
 
 [resource]
 script = ExtResource("1_8edom")
-name = "Turret"
+name = ""
 scene = ExtResource("1_1kmin")
 cost = 5000
 energyUse = 5
 target_placement = true
-icon = ExtResource("1_fi7p4")
 metadata/_custom_type_script = "uid://rmuofr05ey6q"
