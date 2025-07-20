@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx0ddb1wb0io1"]
 
 [ext_resource type="PackedScene" uid="uid://6v5i2bmw6i03" path="res://Assets/kenney_space-kit/Models/GLTF format/rocks_smallA.glb" id="1_wd5mf"]
-[ext_resource type="AudioStream" uid="uid://bxikr13aqegmy" path="res://SoundEffects/lowFrequency_explosion_001.ogg" id="2_ohi7f"]
+[ext_resource type="AudioStream" uid="uid://0bebglgxbxuu" path="res://SoundEffects/explosionCrunch_002.ogg" id="2_ohi7f"]
 
 [node name="Rubble" type="Node3D"]
 
@@ -10,6 +10,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1.5)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_ohi7f")
-volume_db = 27.429
 pitch_scale = 1.63
 autoplay = true

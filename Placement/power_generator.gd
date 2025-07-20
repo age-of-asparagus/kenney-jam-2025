@@ -15,6 +15,8 @@ func _ready():
 	$SubViewport/ProgressBar.value = max_health
 
 func start():
+	$AudioStreamPlayer.play()
+
 	if on and not enemy:
 		Global.total_energy += power_generated
 	elif enemy:

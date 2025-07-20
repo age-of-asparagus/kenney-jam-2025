@@ -15,6 +15,7 @@ func _ready():
 	$SubViewport/ProgressBar.value = max_health
 
 func start():
+	$AudioStreamPlayer.play()
 	if on:
 		if enemy:
 			var fill_style = StyleBoxFlat.new()
