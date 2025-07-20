@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=4 uid="uid://vh05a6ulouid"]
+[gd_scene load_steps=26 format=4 uid="uid://vh05a6ulouid"]
 
 [ext_resource type="Texture2D" uid="uid://by5rsl3yg3yf5" path="res://Assets/kenney_tower-defense-kit/Models/GLB format/Textures/colormap.png" id="1_4u4p5"]
+[ext_resource type="Material" uid="uid://dn1el333t7p26" path="res://new_compressed_texture_2d-.tres" id="2_me661"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4js0"]
 resource_name = "colormap"
@@ -154,12 +155,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_yxjnk")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqdfj"]
-resource_name = "colormap"
-cull_mode = 2
-albedo_texture = ExtResource("1_4u4p5")
-texture_filter = 2
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_b38ws"]
 _surfaces = [{
 "aabb": AABB(-0.5, 0, -0.5, 1, 0.2, 1),
@@ -182,7 +177,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 72,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABwAGAAUACAAJAAoACgALAAgADAANAA4ADwAOAA0AEAARABIAEgATABAAFAAVABYAFwAWABUAGAAZABoAGgAbABgAHAAdAB4AHwAeAB0AIAAhACIAIgAjACAAJAAlACYAJwAmACUAKAApACoAKgArACgALAAtAC4ALwAuAC0A"),
-"material": SubResource("StandardMaterial3D_kqdfj"),
+"material": ExtResource("2_me661"),
 "name": "colormap",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -268,6 +263,42 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_d5xnu")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajdqo"]
+albedo_color = Color(0, 0.737255, 0.396078, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_a6t50"]
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5, 1, 0.2, 1),
+"format": 34896613377,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAQAAAAIAAwABAAAAAgABAAMAAQADAAAAAQACAAMAAgAEAAAABAACAAAAAAAEAAUABQAEAAIABAAAAAUABAAFAAIABgAFAAAABQAGAAAAAAAGAAMABgAAAAMABgADAAUAAwAGAAUABQAHAAMAAwAHAAIABwAFAAMABwADAAIAAgAHAAUABwACAAUA"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAA//8AAP//AAAAAAAA////////AAAAAAAAAAAAAAAA//8AAAAAAAD/////AAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_eopaw"]
+resource_local_to_scene = true
+resource_name = "tile_tile"
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5, 1, 0.2, 1),
+"attribute_data": PackedByteArray("/5eYuf+XmLn/l5i5/5eYuf+XmLn/l5i5/5eYuf+XmLn/l2WG/5dlhv+XmLn/l5i5/5dlhv+XZYb/l5i5/5eYuf+XZYb/l5i5/5eYuf+XZYb/l5i5/5dlhv+XmLn/l2WG/5eYuf+XmLn/l2WG/5dlhv+XmLn/l5i5/5dlhv+XZYb/l2WG/5eYuf+XmLn/l2WG/5eYuf+XZYb/l5i5/5dlhv+XZYb/l2WG/5dlhv+XZYb/l2WG/5dlhv+XZYb/l2WG"),
+"format": 34896613399,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABwAGAAUACAAJAAoACgALAAgADAANAA4ADwAOAA0AEAARABIAEgATABAAFAAVABYAFwAWABUAGAAZABoAGgAbABgAHAAdAB4AHwAeAB0AIAAhACIAIgAjACAAJAAlACYAJwAmACUAKAApACoAKgArACgALAAtAC4ALwAuAC0A"),
+"material": SubResource("StandardMaterial3D_ajdqo"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AAAAAP///7///wAA////v///AAAAAP+/AAAAAAAA/7///wAA////PwAAAAD///8///8AAAAA/z8AAAAAAAD/P/////////+//////wAA/7///wAAAAD/v///AAD///+//////wAAAAD///////8AAP//AAAAAAAA//8AAP//AAD///////8AgP//AAD//wCAAAAAAP//AIAAAP////8AgP//AAD//wAA////////AAAAAAAA//8AAAAA/////wAAAAAAAP///78AAAAAAAD/vwAA//8AAP+/AAD//////78AAAAAAAAAAAAAAAD//wAAAAD//wAAAAAAAP////8AAAAA//8AAP//AAAAAAAA/////wAAAAD///////8AAP//AAAAAAAAAAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAP//AAD///////8AAP////////////8AAP////////////8AAAAAAAD//wAAAAD///////8AAAAA/////wAAAAD/fwAA/38AAP9/AAD/f////3////9/////f////3//fwAA/38AAP9/AAD/fwAA/z//f/8//3//P/9//z//f/9/////f////3////9///////9/////f////3////9//3////9/////f////3////+//3//v/9//7//f/+//3//f////3////9/////f////3//f/9//3//f/9//3//f/9//7//f/+//3//v/9//7//f/8//3//P/9//z//f/8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_a6t50")
+
 [node name="MeshLibrary" type="Node3D"]
 
 [node name="tile-tree-double" type="MeshInstance3D" parent="."]
@@ -303,4 +334,24 @@ skeleton = NodePath("")
 [node name="tile-crystal" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 mesh = SubResource("ArrayMesh_81ekp")
+skeleton = NodePath("")
+
+[node name="tile2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1.5)
+mesh = SubResource("ArrayMesh_eopaw")
+skeleton = NodePath("")
+
+[node name="tile3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1.5)
+mesh = SubResource("ArrayMesh_7qgn3")
+skeleton = NodePath("")
+
+[node name="tile4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
+mesh = SubResource("ArrayMesh_7qgn3")
+skeleton = NodePath("")
+
+[node name="tile5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+mesh = SubResource("ArrayMesh_7qgn3")
 skeleton = NodePath("")

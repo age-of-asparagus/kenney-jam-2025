@@ -5,6 +5,7 @@ var distance_to_target : float
 var health : int
 @export var firerate : float
 
+const RUBBLE = preload("res://Rubble.tscn")
 var bullet = preload("res://bullet.tscn")
 var bullet_position_index = 0
 @onready var bullet_position =[
@@ -39,6 +40,10 @@ func _physics_process(delta):
 	if on:
 		if health <= 0:
 			turn_off()
+			var rubble = RUBBLE.instantiate()
+			rubble.global_position = global_position
+			rubble.rotate_y(2*PI*randf())
+			get_tree().current_scene.add_child(rubble)
 			queue_free()
 
 func shoot():
