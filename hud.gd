@@ -16,7 +16,6 @@ func _physics_process(delta):
 	update_inventory(Global.cash)
 	
 func update_inventory(cash : int):
-	print(cash)
 	for i in structure_selector.item_count:
 		# the Array structures should match the selector structures, 
 		# since the selector structure were generated based off the Array
@@ -25,7 +24,8 @@ func update_inventory(cash : int):
 		
 		if structure.cost > cash:
 			set_disabled = true
-			print("Not enough money!")
+			
+		# re-enable this we can afford, disable the rest
 		structure_selector.set_item_disabled(i, set_disabled)
 	
 func set_inventory():
