@@ -20,6 +20,7 @@ func start():
 	if on and not enemy:
 		Global.total_energy += power_generated
 	elif enemy:
+			Global.enemy_total_energy += power_generated
 			var fill_style = StyleBoxFlat.new()
 			fill_style.bg_color = Color.RED
 			$SubViewport/ProgressBar.add_theme_stylebox_override("fill", fill_style)
@@ -40,5 +41,8 @@ func delete():
 	rubble.global_position = global_position
 	rubble.rotate_y(2*PI*randf())
 	get_tree().current_scene.add_child(rubble)
-	Global.total_energy -= power_generated
+	if not enemy:
+		Global.total_energy -= power_generated
+	else:
+		Global.enemy_total_energy -= power_generated
 	queue_free()

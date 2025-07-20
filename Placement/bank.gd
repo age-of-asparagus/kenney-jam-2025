@@ -18,6 +18,8 @@ func start():
 	$AudioStreamPlayer.play()
 	if on:
 		if enemy:
+			Global.enemy_energy_used += energy_use
+			Global.enemy_spawn_rate *= 0.9
 			var fill_style = StyleBoxFlat.new()
 			fill_style.bg_color = Color.RED
 			$SubViewport/ProgressBar.add_theme_stylebox_override("fill", fill_style)
@@ -32,7 +34,7 @@ func turn_off():
 
 func _physics_process(delta):
 	$SubViewport/ProgressBar.value = health
-	if on:
+	if on and not enemy:
 		Global.cash += rate
 		if health <= 0:
 			turn_off()
@@ -42,6 +44,9 @@ func _physics_process(delta):
 func delete():
 	if not enemy:
 		Global.energy_used -= energy_use
+	else:
+		Global.enemy_energy_used -= energy_use
+		Global.enemy_spawn_rate /= 0.9
 	var rubble = RUBBLE.instantiate()
 	rubble.global_position = global_position
 	rubble.rotate_y(2*PI*randf())
