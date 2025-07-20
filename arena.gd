@@ -40,24 +40,28 @@ func spawn_power():
 	add_child(Power)
 	Power.position = get_random_enemy_location()
 	Power.on = true
+	Power.enemy = true
 	Power.start()
 func spawn_turret():
 	var Turret = turret.instantiate()
 	add_child(Turret)
 	Turret.position = get_random_enemy_location()
 	Turret.on = true
+	Turret.enemy = true
 	Turret.start()
 func spawn_bank():
 	var Bank = bank.instantiate()
 	add_child(Bank)
 	Bank.position = get_random_enemy_location()
 	Bank.on = true
+	Bank.enemy = true
 	Bank.start()
 func spawn_artillery():
 	var Artillery = artillery.instantiate()
 	add_child(Artillery)
 	Artillery.position = get_random_enemy_location()
 	Artillery.on = true
+	Artillery.enemy = true
 	Artillery.start()
 
 
