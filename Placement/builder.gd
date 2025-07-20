@@ -62,18 +62,21 @@ func handle_placement(gridmap_position: Vector3):
 		
 		if not targetting:
 			
-			# if this structure needs to target, then we need to place a preview first
-			if selected_structure.target_placement:
-
-				# We need to click a second time to set a target
-				targetting = true
-				# Store the placement position so we can instantiate the selected_structure there
-				# and calculate the target angle
-				structure_position = gridmap_position
-				
-			# else the strucutre does NOT need to target and we can place it right away
+			# check if placing overtop of an existing structure
+			if gridmap.get_cell_item(gridmap_position) == 1:
+				print("already occpied!")
 			else:
-				place_structure(selected_structure, gridmap_position)
+				# if this structure needs to target, then we need to place a preview first
+				if selected_structure.target_placement:
+					# We need to click a second time to set a target
+					targetting = true
+					# Store the placement position so we can instantiate the selected_structure there
+					# and calculate the target angle
+					structure_position = gridmap_position
+					
+				# else the strucutre does NOT need to target and we can place it right away
+				else:
+					place_structure(selected_structure, gridmap_position)
 					
 						
 		else:
