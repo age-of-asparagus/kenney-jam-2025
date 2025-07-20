@@ -58,8 +58,10 @@ cell_center_x = false
 cell_center_y = false
 cell_center_z = false
 script = ExtResource("6_ml6qp")
-top_left = Vector2(-4, -9)
-dimensions = Vector2(9, 22)
+grid_start_x = -4
+grid_start_z = -9
+grid_width = 9
+grid_depth = 22
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 14.5, 0)

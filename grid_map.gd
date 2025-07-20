@@ -1,14 +1,11 @@
 extends GridMap
 
-@export var top_left := Vector2(-7, -6)
-@export var dimensions := Vector2(15, 17)
-
 var grid_mesh_instance: MeshInstance3D
 
-var grid_start_x = 0
-var grid_start_z = 0
-var grid_width = 0
-var grid_depth = 0
+@export var grid_start_x = 0
+@export var grid_start_z = 0
+@export var grid_width = 0
+@export var grid_depth = 0
 
 func _ready():
 	grid_mesh_instance = MeshInstance3D.new()
@@ -16,39 +13,7 @@ func _ready():
 	_create_grid_mesh()
 
 func _create_grid_mesh():
-	var used_cells = get_used_cells()
-
-	# Default grid size if empty
-	if used_cells.is_empty():
-		_build_grid_mesh(top_left.x, top_left.y, dimensions.x, dimensions.y)
-		return
-
-	# Find bounds of used cells in X and Z
-	var min_x = 99999
-	var max_x = -99999
-	var min_z = 99999
-	var max_z = -99999
-
-	for cell in used_cells:
-		if cell.x < min_x:
-			min_x = cell.x
-		if cell.x > max_x:
-			max_x = cell.x
-		if cell.z < min_z:
-			min_z = cell.z
-		if cell.z > max_z:
-			max_z = cell.z
-
-	var width = max_x - min_x + 1
-	var depth = max_z - min_z + 1
-
-	_build_grid_mesh(min_x, min_z, width, depth)
-	
-	# Store bounds so we can use them later
-	grid_start_x = min_x
-	grid_start_z = min_z
-	grid_width = width
-	grid_depth = depth
+	_build_grid_mesh(grid_start_x, grid_start_z, grid_width, grid_depth)
 
 func _build_grid_mesh(start_x: int, start_z: int, width: int, depth: int) -> void:
 	var cell_size = self.cell_size.x
