@@ -22,4 +22,4 @@ func set_inventory(structures: Array[Structure]) -> void:
 
 func _on_structure_selector_item_selected(index: int) -> void:
 	var structure = inventory[index]
-	emit_signal("strucutre_selected", structure)
+	emit_signal("structure_selected", structure)
