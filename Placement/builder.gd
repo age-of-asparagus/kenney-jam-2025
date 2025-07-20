@@ -117,13 +117,13 @@ func place_structure(
 func out_of_bounds(gridmap_position: Vector3):
 	var x = gridmap_position.x
 	var y = gridmap_position.z
-	if x < gridmap.top_left.x:
+	if x < gridmap.grid_start_x:
 		return true
-	if x >= gridmap.top_left.x + gridmap.dimensions.x:
+	if x >= gridmap.grid_start_x + gridmap.grid_width:
 		return true
-	if y < gridmap.top_left.y:
+	if y < gridmap.grid_start_z:
 		return true
-	if y >= gridmap.top_left.y + gridmap.dimensions.y:
+	if y >= gridmap.grid_start_z + gridmap.grid_depth:
 		return true
 	else:
 		return false
