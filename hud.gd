@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var energy_used: Label = $MarginContainer/VBoxContainer/HBoxContainer2/Energy_Used
 @onready var energy_progress_bar: ProgressBar = $MarginContainer/VBoxContainer/HBoxContainer2/EnergyProgressBar
 @export var structures: Array[Structure] = []
+@onready var energy_total: Label = $MarginContainer/VBoxContainer/HBoxContainer2/Energy_Total
 
 signal structure_selected
 
@@ -13,8 +14,10 @@ func _ready():
 func _physics_process(delta):
 	Global.cash += 5
 	$MarginContainer/HBoxContainer/Cash.text = "$"+str(Global.cash)
+	
+	energy_total.text = str(Global.total_energy) + " MW"
 	var percent = 100*Global.energy_used/Global.total_energy
-	energy_available.text = str(Global.total_energy) + " MW"
+	energy_available.text = str(Global.total_energy-Global.energy_used) + " MW"
 	energy_used.text = str(Global.energy_used) + " MW (" + str(percent) +"%)"
 	energy_progress_bar.value = percent
 	update_inventory(Global.cash)
