@@ -14,6 +14,7 @@ func _ready():
 	randomize()
 
 func _physics_process(delta):
+
 	while (Global.total_energy-Global.energy_used) < 0:
 		var structure_list = unit_container.get_children().duplicate()
 		structure_list.reverse()
@@ -110,15 +111,15 @@ func _on_timer_timeout():
 			spawn_artillery()
 	elif (Global.enemy_total_energy - Global.enemy_energy_used) >= 10:
 		var Random = RNG.randi_range(1,100)
-		if Random <35:
+		if Random <40:
 			spawn_power()
-		elif Random <68:
+		elif Random <60:
 			spawn_bank()
 		else:
 			spawn_turret()
 	elif (Global.enemy_total_energy - Global.enemy_energy_used) >= 5:
 		var Random = RNG.randi_range(1,100)
-		if Random <51:
+		if Random <60:
 			spawn_power()
 		else:
 			spawn_bank()
