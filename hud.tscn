@@ -3,8 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://dmx4ddve2ejtt" path="res://HUD/coin.png" id="1_37p78"]
 [ext_resource type="Script" uid="uid://ccksei7awy3lt" path="res://hud.gd" id="1_64ctp"]
 [ext_resource type="Texture2D" uid="uid://354b6uumkvk2" path="res://Assets/kenney_city-kit-industrial_1.0/Models/Textures/variation-c.png" id="3_8sq4i"]
-[ext_resource type="Texture2D" uid="uid://dh7frdvcem4jb" path="res://Assets/kenney_space-kit/Side/turret_single.png" id="4_a2258"]
-[ext_resource type="Texture2D" uid="uid://vaoxeqbqcl3" path="res://Assets/kenney_city-kit-industrial_1.0/Previews/chimney-large.png" id="5_1xsix"]
+[ext_resource type="Script" uid="uid://bdn6eyvaqsp0u" path="res://structure_selector.gd" id="6_1xsix"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2258"]
+bg_color = Color(0, 0, 0, 0.309804)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_64ctp")
@@ -50,17 +56,18 @@ expand_mode = 3
 layout_mode = 2
 text = "$10,000"
 
-[node name="ItemList" type="ItemList" parent="MarginContainer"]
+[node name="StructureSelector" type="ItemList" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 2
+theme_override_constants/v_separation = 4
+theme_override_constants/line_separation = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_a2258")
 auto_height = true
 wraparound_items = false
-item_count = 3
 max_columns = 2
 fixed_column_width = 128
 icon_mode = 0
 fixed_icon_size = Vector2i(64, 64)
-item_0/text = "Gun"
-item_0/icon = ExtResource("4_a2258")
-item_1/text = "Power"
-item_1/icon = ExtResource("5_1xsix")
+script = ExtResource("6_1xsix")
