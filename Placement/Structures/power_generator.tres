@@ -8,7 +8,7 @@
 script = ExtResource("1_q7jbr")
 name = "Power"
 scene = ExtResource("1_jn8e0")
-cost = 2500
+cost = 1000
 energyUse = 0
 target_placement = false
 icon = ExtResource("1_i86lw")

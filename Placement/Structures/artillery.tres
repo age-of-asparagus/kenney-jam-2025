@@ -8,7 +8,7 @@
 script = ExtResource("1_m2e2h")
 name = "artillery"
 scene = ExtResource("2_wty43")
-cost = 1000
+cost = 3000
 energyUse = 25
 target_placement = true
 icon = ExtResource("1_t0wi0")

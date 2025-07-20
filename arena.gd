@@ -1,14 +1,17 @@
 extends Node3D
 @onready var unit_container: Node3D = $UnitContainer
-var enemy_cash = 0
+
+var power = preload("res://Placement/power_generator.tscn")
+var turret = preload("res://gun.tscn")
+var bank = preload("res://Placement/bank.tscn")
+var artillery = preload("res://artillery.tscn")
 
 func _ready():
 	randomize()
 	$Gun.start()
 	$Gun2.start()
 	
-func _physics_process(delta):
-	enemy_cash += 10
+
 
 func _on_hud_structure_selected(structure : Structure) -> void:
 	$Builder.set_selected_structure(structure)
@@ -29,4 +32,15 @@ func get_random_enemy_location() -> Vector3:
 		# pick a random cell on the grid:
 		return $GridMap.get_random_location()
 
-		
+func spawn_power():
+	
+func spawn_turret():
+
+func spawn_bank():
+	
+func spawn_artillery():
+
+
+
+func _on_timer_timeout():
+	spawn()
