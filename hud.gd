@@ -16,7 +16,9 @@ func _physics_process(delta):
 	$MarginContainer/HBoxContainer/Cash.text = "$"+str(Global.cash)
 	
 	energy_total.text = str(Global.total_energy) + " MW"
-	var percent = 100*Global.energy_used/Global.total_energy
+	var percent = 0
+	if Global.total_energy > 0:
+		percent = 100*Global.energy_used/Global.total_energy
 	energy_available.text = str(Global.total_energy-Global.energy_used) + " MW"
 	energy_used.text = str(Global.energy_used) + " MW (" + str(percent) +"%)"
 	energy_progress_bar.value = percent

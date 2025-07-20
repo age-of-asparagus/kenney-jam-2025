@@ -36,9 +36,9 @@ func _physics_process(delta):
 	$SubViewport/ProgressBar.value = health
 	if on and not enemy:
 		Global.cash += rate
-		if health <= 0:
-			turn_off()
-			delete()
+	if health <= 0:
+		turn_off()
+		delete()
 
 
 func delete():

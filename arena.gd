@@ -101,19 +101,19 @@ func spawn_artillery():
 func _on_timer_timeout():
 	if (Global.enemy_total_energy - Global.enemy_energy_used) >= 25:
 		var Random = RNG.randi_range(1,100)
-		if Random < 26:
+		if Random < 10:
 			spawn_power()
-		elif Random <51:
+		elif Random <20:
 			spawn_bank()
-		elif Random < 76:
+		elif Random <50:
 			spawn_turret()
 		else:
 			spawn_artillery()
 	elif (Global.enemy_total_energy - Global.enemy_energy_used) >= 10:
 		var Random = RNG.randi_range(1,100)
-		if Random <40:
+		if Random <35:
 			spawn_power()
-		elif Random <60:
+		elif Random <55:
 			spawn_bank()
 		else:
 			spawn_turret()
