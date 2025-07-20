@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmhqta4hq8xio"]
+[gd_scene load_steps=6 format=3 uid="uid://cmhqta4hq8xio"]
 
 [ext_resource type="Texture2D" uid="uid://dmx4ddve2ejtt" path="res://HUD/coin.png" id="1_37p78"]
 [ext_resource type="Script" uid="uid://ccksei7awy3lt" path="res://hud.gd" id="1_64ctp"]
-[ext_resource type="Texture2D" uid="uid://354b6uumkvk2" path="res://Assets/kenney_city-kit-industrial_1.0/Models/Textures/variation-c.png" id="3_8sq4i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64ctp"]
+bg_color = Color(0.6, 0.6, 0.6, 0.223529)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sq4i"]
+bg_color = Color(0, 0.447059, 0.6, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2258"]
 bg_color = Color(0, 0, 0, 0.309804)
@@ -41,19 +46,41 @@ expand_mode = 3
 layout_mode = 2
 text = "$10,000"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="EnergyIcon" type="TextureRect" parent="MarginContainer/HBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("3_8sq4i")
-expand_mode = 3
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 16
 
-[node name="Energy_Available" type="Label" parent="MarginContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "$10,000"
+text = "ENERGY USED: "
+
+[node name="Energy_Used" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "10,000 MW"
+
+[node name="EnergyProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(500, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_64ctp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8sq4i")
+value = 75.0
+show_percentage = false
+
+[node name="Energy_Available" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "10,000 MW"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "AVAILABLE"
 
 [node name="StructureSelector" type="ItemList" parent="MarginContainer"]
 layout_mode = 2
