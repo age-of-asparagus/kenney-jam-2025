@@ -21,6 +21,8 @@ func _on_hud_structure_selected(structure : Structure) -> void:
 func _on_builder_structure_placed() -> void:
 	$HUD.deselect_structure()
 
+func get_random_enemy_location() -> Vector3:
+	return $GridMap.get_random_location(true)
 
 func get_random_friendly_location() -> Vector3:
 	# All player units  placed are added to the unit container

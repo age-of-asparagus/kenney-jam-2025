@@ -68,6 +68,8 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 
 [node name="UnitContainer" type="Node3D" parent="."]
 
+[node name="EnemyContainer" type="Node3D" parent="."]
+
 [node name="HUD" parent="." instance=ExtResource("9_u21bi")]
 structures = Array[ExtResource("3_jycnn")]([ExtResource("5_18q8f"), ExtResource("4_ml6qp"), ExtResource("12_5fp84"), ExtResource("11_tkj6m")])
 
