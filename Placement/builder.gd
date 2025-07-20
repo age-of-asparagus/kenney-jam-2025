@@ -4,13 +4,13 @@ extends Node3D
 @onready var target_marker = $"Placement/Sprite3D-Target"
 @onready var placement = $Placement
 @onready var preview_container = $Placement/StructureContainer
-@export var structures: Array[Structure] = []
-var index:int = 0 # Index of structure being built within the structures Array
 
 @export var instance_container : Node3D
 @export var camera:Camera3D # Used for raycasting mouse
 @export var gridmap:GridMap
 #@export var cash_display:Label
+
+signal structure_placed
 
 var plane:Plane # Used for raycasting mouse
 
@@ -28,12 +28,10 @@ func _ready():
 
 	plane = Plane(Vector3.UP, Vector3.ZERO)
 	
-	selected_structure = structures[index]
+	selected_structure = null
 	update_preview_structure()
 	
 func _process(delta):
-	
-	update_preview_structure()
 	
 	# Map position based on mouse
 	var world_position = plane.intersects_ray(
@@ -42,6 +40,12 @@ func _process(delta):
 
 	var gridmap_position = Vector3(round(world_position.x), 0, round(world_position.z))
 	placement.position = lerp(placement.position, gridmap_position, delta * 40)
+	
+	update_preview_structure()
+	if selected_structure:
+		handle_placement(gridmap_position)
+
+func handle_placement(gridmap_position: Vector3):
 	
 	is_out_of_bounds = out_of_bounds(gridmap_position)
 	if is_out_of_bounds:
@@ -93,9 +97,12 @@ func place_structure(structure: Structure, gridmap_position: Vector3, rotation: 
 		
 		gridmap.set_cell_item(
 			gridmap_position, 
-			index, 
+			1, # 1 indicates a unit/structure is in this gridmap cell. -1 means empty.
 			gridmap.get_orthogonal_index_from_basis(placement.basis)
 		)
+		
+		emit_signal("structure_placed")
+		selected_structure = null
 			
 func out_of_bounds(gridmap_position: Vector3):
 	var x = gridmap_position.x
@@ -135,19 +142,21 @@ func get_rotation_to_target(target, source):
 
 # Update the structure visual in the placement marker
 func update_preview_structure():
-	
-	if is_out_of_bounds:
-		placement_marker.visible = false
-		target_marker.visible = false
-	else:
-		placement_marker.visible = not targetting
-		target_marker.visible = targetting
-	
+		
 	# Clear previous structure preview in placement marker
 	for n in preview_container.get_children():
 		preview_container.remove_child(n)
 	if preview_instance:
 		preview_instance.queue_free()
+		
+	if is_out_of_bounds or selected_structure == null:
+		placement_marker.visible = false
+		target_marker.visible = false
+		# no need to continue
+		return
+	else:
+		placement_marker.visible = not targetting
+		target_marker.visible = targetting
 		
 	# Create new structure preview in placement marker (or at clicked location if still targetting)
 	if targetting or not is_out_of_bounds:

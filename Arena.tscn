@@ -24,7 +24,6 @@ material = SubResource("StandardMaterial3D_1qmqq")
 
 [node name="Builder" type="Node3D" parent="." node_paths=PackedStringArray("instance_container", "camera", "gridmap")]
 script = ExtResource("2_vbyki")
-structures = Array[ExtResource("3_jycnn")]([ExtResource("4_ml6qp"), ExtResource("5_18q8f")])
 instance_container = NodePath("../UnitContainer")
 camera = NodePath("../View/Camera3D")
 gridmap = NodePath("../GridMap")
@@ -66,9 +65,11 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 [node name="UnitContainer" type="Node3D" parent="."]
 
 [node name="HUD" parent="." instance=ExtResource("9_u21bi")]
+structures = Array[ExtResource("3_jycnn")]([ExtResource("4_ml6qp"), ExtResource("5_18q8f")])
 
 [node name="Gun" parent="." instance=ExtResource("11_1qmqq")]
 on = true
 enemy = true
 
+[connection signal="structure_placed" from="Builder" to="." method="_on_builder_structure_placed"]
 [connection signal="structure_selected" from="HUD" to="." method="_on_hud_structure_selected"]
