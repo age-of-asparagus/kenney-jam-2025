@@ -20,7 +20,6 @@ func _physics_process(delta):
 		$Area3D.monitoring = true
 	if frames_till_target <= 0:
 		queue_free()
-	print(frames_till_target)
 	position += velocity
 
 
