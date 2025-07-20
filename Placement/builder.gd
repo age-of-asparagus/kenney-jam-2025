@@ -159,11 +159,12 @@ func update_preview_structure():
 	if is_out_of_bounds or selected_structure == null:
 		placement_marker.visible = false
 		target_marker.visible = false
-		# no need to continue
-		return
 	else:
 		placement_marker.visible = not targetting
 		target_marker.visible = targetting
+		
+	if selected_structure == null:
+		return
 		
 	# Create new structure preview in placement marker (or at clicked location if still targetting)
 	if targetting or not is_out_of_bounds:
