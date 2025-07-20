@@ -1,10 +1,14 @@
 extends Node3D
 @onready var unit_container: Node3D = $UnitContainer
+var enemy_cash = 0
 
 func _ready():
 	randomize()
 	$Gun.start()
 	$Gun2.start()
+	
+func _physics_process(delta):
+	enemy_cash += 10
 
 func _on_hud_structure_selected(structure : Structure) -> void:
 	$Builder.set_selected_structure(structure)

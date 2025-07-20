@@ -4,7 +4,7 @@ extends Node3D
 @export var max_health : int
 var health : int
 @export var rate : float
-
+var distance_to_target : float
 @export var on := false
 @export var enemy := false
 
