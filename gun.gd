@@ -1,6 +1,6 @@
 extends Node3D
 @onready var timer = $Timer
-
+var distance_to_target : float
 @export var max_health : int
 var health : int
 @export var firerate : float

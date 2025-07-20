@@ -17,6 +17,7 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Power_generator" type="Node3D"]
 script = ExtResource("1_6dtm3")
+max_health = 30
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_mask = 0
@@ -48,7 +49,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_4me2t")
 theme_override_styles/fill = SubResource("StyleBoxFlat_iywrq")
-value = 89.06
+value = 100.0
 show_percentage = false
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqpq43n84daut"]
+
+[ext_resource type="Script" uid="uid://t0y4h4hpf0lq" path="res://cannonball.gd" id="1_246s8"]
+[ext_resource type="PackedScene" uid="uid://deducg4qatkag" path="res://Assets/kenney_tower-defense-kit/Models/GLB format/weapon-ammo-cannonball.glb" id="2_bdwag"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dix7p"]
+radius = 0.144071
+
+[node name="Cannonball" type="Node3D"]
+script = ExtResource("1_246s8")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_dix7p")
+
+[node name="weapon-ammo-cannonball2" parent="." instance=ExtResource("2_bdwag")]

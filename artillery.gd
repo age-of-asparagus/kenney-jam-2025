@@ -12,6 +12,8 @@ var Cannonball = preload("res://cannonball.tscn")
 @export var on := false
 @export var enemy := false
 
+var distance_to_target : float
+
 func start():
 	health = max_health
 	$SubViewport/ProgressBar.max_value = max_health
