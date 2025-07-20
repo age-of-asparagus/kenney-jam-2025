@@ -24,6 +24,9 @@ func start():
 
 	if on:
 		if enemy:
+			var fill_style = StyleBoxFlat.new()
+			fill_style.bg_color = Color.RED
+			$SubViewport/ProgressBar.add_theme_stylebox_override("fill", fill_style)
 			$Area3D.set_collision_layer_value(1,false)
 			$Area3D.set_collision_layer_value(2,true)
 		else:
