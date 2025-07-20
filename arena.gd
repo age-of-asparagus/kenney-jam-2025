@@ -9,7 +9,15 @@ var artillery = preload("res://artillery.tscn")
 func _ready():
 	randomize()
 
-
+func _physics_process(delta):
+	while (Global.total_energy-Global.energy_used) < 0:
+		var structure_list = unit_container.get_children().duplicate()
+		structure_list.reverse()
+		for structure in structure_list:
+			if structure.on:
+				structure.turn_off()
+				break
+	
 
 
 

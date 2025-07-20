@@ -19,6 +19,7 @@ viewport_path = NodePath("SubViewport")
 script = ExtResource("1_dk5gl")
 max_health = 10
 firerate = 0.25
+energy_use = 5
 
 [node name="Timer" type="Timer" parent="."]
 

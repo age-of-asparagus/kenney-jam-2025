@@ -17,6 +17,7 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Bank" type="Node3D"]
 script = ExtResource("1_dj1s5")
+energy_use = 3
 max_health = 30
 rate = 2.0
 

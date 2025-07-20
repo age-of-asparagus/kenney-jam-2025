@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var timer = $Timer
-
+@export var energy_use : int
 @export var max_health : int
 var health : int
 @export var firerate : float
@@ -14,21 +14,30 @@ var Cannonball = preload("res://cannonball.tscn")
 
 var distance_to_target : float
 
-func start():
+func _ready():
 	health = max_health
 	$SubViewport/ProgressBar.max_value = max_health
 	$SubViewport/ProgressBar.value = max_health
+
+func start():
 	if on:
 		if enemy:
 			$Area3D.set_collision_layer_value(1,false)
 			$Area3D.set_collision_layer_value(2,true)
+		else:
+			Global.energy_used += energy_use
 		$Timer.wait_time = firerate
 		timer.start()
+
+func turn_off():
+	on = false
+	Global.energy_used -= energy_use
 
 func _physics_process(delta):
 	$SubViewport/ProgressBar.value = health
 	if on:
 		if health <= 0:
+			turn_off()
 			queue_free()
 
 func shoot():

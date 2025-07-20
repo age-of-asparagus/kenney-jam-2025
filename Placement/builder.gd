@@ -97,7 +97,6 @@ func place_structure(
 		
 		var structure_instance = structure.scene.instantiate()
 		Global.cash -= structure.cost
-		Global.energy_used += structure.energyUse
 		structure_instance.global_position = gridmap.map_to_local(gridmap_position)
 		structure_instance.rotation = rotation
 		structure_instance.distance_to_target = distance
