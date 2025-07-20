@@ -79,9 +79,20 @@ func _build_grid_mesh(start_x: int, start_z: int, width: int, depth: int) -> voi
 	var mesh = st.commit()
 	grid_mesh_instance.mesh = mesh
 	
-func get_random_location() -> Vector3:
+func get_random_location(enemy := false) -> Vector3:
 	var cell_size = self.cell_size.x
+
+	# X range is always full width
 	var x = (randi() % grid_width + grid_start_x) * cell_size
-	var z = (randi() % grid_depth + grid_start_z) * cell_size
-	var y = 0.0  # or whatever Y level you want
+
+	# Split the grid in half along Z
+	var half_depth = grid_depth / 2
+
+	var z_offset = grid_start_z
+	if enemy:
+		z_offset += half_depth
+
+	var z = (randi() % half_depth + z_offset) * cell_size
+
+	var y = 0.0
 	return Vector3(x, y, z)
