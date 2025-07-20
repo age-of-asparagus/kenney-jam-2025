@@ -1,5 +1,8 @@
 extends Node3D
 @onready var unit_container: Node3D = $UnitContainer
+@onready var enemy_container = $EnemyContainer
+
+var RNG = RandomNumberGenerator.new()
 
 var power = preload("res://Placement/power_generator.tscn")
 var turret = preload("res://gun.tscn")
@@ -7,6 +10,7 @@ var bank = preload("res://Placement/bank.tscn")
 var artillery = preload("res://artillery.tscn")
 
 func _ready():
+	RNG.randomize()
 	randomize()
 
 func _physics_process(delta):
@@ -14,7 +18,15 @@ func _physics_process(delta):
 		var structure_list = unit_container.get_children().duplicate()
 		structure_list.reverse()
 		for structure in structure_list:
-			if structure.on:
+			if structure.on and structure.energy_use > 0:
+				structure.delete()
+				break
+	
+	while (Global.enemy_total_energy-Global.enemy_energy_used) < 0:
+		var structure_list = enemy_container.get_children().duplicate()
+		structure_list.reverse()
+		for structure in structure_list:
+			if structure.on and structure.energy_use > 0:
 				structure.delete()
 				break
 	
@@ -86,5 +98,15 @@ func spawn_artillery():
 	initialize_enemy(Artillery)
 
 func _on_timer_timeout():
-	spawn_artillery()
-	spawn_turret()
+	if (Global.enemy_total_energy - Global.enemy_energy_used) > 25:
+		var Random = RNG.randi_range(1,100)
+		if Random < 26:
+			spawn_power()
+		elif Random <51:
+			spawn_bank()
+		elif Random < 76:
+			spawn_turret()
+		else:
+			spawn_artillery()
+	elif (Global.enemy_total_energy - Global.enemy_energy_used) > 10:
+		pass

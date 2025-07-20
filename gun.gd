@@ -24,6 +24,7 @@ func start():
 
 	if on:
 		if enemy:
+			Global.enemy_energy_used += energy_use
 			var fill_style = StyleBoxFlat.new()
 			fill_style.bg_color = Color.RED
 			$SubViewport/ProgressBar.add_theme_stylebox_override("fill", fill_style)
@@ -48,6 +49,8 @@ func _physics_process(delta):
 func delete():
 	if not enemy:
 		Global.energy_used -= energy_use
+	else:
+		Global.enemy_energy_used -= energy_use
 	var rubble = RUBBLE.instantiate()
 	rubble.global_position = global_position
 	rubble.rotate_y(2*PI*randf())
