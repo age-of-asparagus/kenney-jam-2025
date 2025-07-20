@@ -36,8 +36,7 @@ func start():
 
 func turn_off():
 	on = false
-	if not enemy:
-		Global.energy_used -= energy_use
+
 
 func _physics_process(delta):
 	$SubViewport/ProgressBar.value = health
@@ -47,6 +46,8 @@ func _physics_process(delta):
 			delete()
 
 func delete():
+	if not enemy:
+		Global.energy_used -= energy_use
 	var rubble = RUBBLE.instantiate()
 	rubble.global_position = global_position
 	rubble.rotate_y(2*PI*randf())

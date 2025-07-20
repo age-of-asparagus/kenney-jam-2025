@@ -26,8 +26,6 @@ func start():
 
 func turn_off():
 	on = false
-	if not enemy:
-		Global.energy_used -= energy_use
 
 func _physics_process(delta):
 	$SubViewport/ProgressBar.value = health
