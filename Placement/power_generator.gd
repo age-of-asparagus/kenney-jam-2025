@@ -4,6 +4,7 @@ var distance_to_target : float
 @export var max_health : int
 var health : int
 @export var power_generated = 10
+var enemy = false
 var on = false
 
 func start():

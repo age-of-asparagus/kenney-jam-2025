@@ -34,6 +34,15 @@ func get_random_friendly_location() -> Vector3:
 		# pick a random cell on the grid:
 		return $GridMap.get_random_location(false)
 
+func get_rotation_to_target(target, source):
+	var dir = (target - source).normalized()
+	if dir.length() > 0:
+		var dir_2d = Vector2(dir.x, dir.z)
+		var angle = Vector2(0, 1).angle_to(dir_2d)
+		return Vector3(0, -angle, 0)
+	else:
+		return Vector3.ZERO
+
 func spawn_power():
 	var Power = power.instantiate()
 	add_child(Power)
@@ -45,6 +54,7 @@ func spawn_turret():
 	var Turret = turret.instantiate()
 	add_child(Turret)
 	Turret.position = get_random_enemy_location()
+	Turret.rotation = get_rotation_to_target(get_random_friendly_location(), Turret.position)
 	Turret.on = true
 	Turret.enemy = true
 	Turret.start()
@@ -57,8 +67,11 @@ func spawn_bank():
 	Bank.start()
 func spawn_artillery():
 	var Artillery = artillery.instantiate()
+	var target = get_random_friendly_location()
 	add_child(Artillery)
 	Artillery.position = get_random_enemy_location()
+	Artillery.rotation = get_rotation_to_target(target, Artillery.position)
+	Artillery.distance_to_target = Artillery.position.distance_to(target)
 	Artillery.on = true
 	Artillery.enemy = true
 	Artillery.start()
@@ -66,4 +79,5 @@ func spawn_artillery():
 
 
 func _on_timer_timeout():
-	spawn_power()
+	spawn_artillery()
+	spawn_turret()
