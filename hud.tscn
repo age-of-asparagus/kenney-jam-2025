@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmhqta4hq8xio"]
+[gd_scene load_steps=5 format=3 uid="uid://cmhqta4hq8xio"]
 
 [ext_resource type="Texture2D" uid="uid://dmx4ddve2ejtt" path="res://HUD/coin.png" id="1_37p78"]
 [ext_resource type="Script" uid="uid://ccksei7awy3lt" path="res://hud.gd" id="1_64ctp"]
@@ -70,4 +70,5 @@ max_columns = 2
 fixed_column_width = 128
 icon_mode = 0
 fixed_icon_size = Vector2i(64, 64)
-script = ExtResource("6_1xsix")
+
+[connection signal="item_selected" from="MarginContainer/StructureSelector" to="." method="_on_structure_selector_item_selected"]

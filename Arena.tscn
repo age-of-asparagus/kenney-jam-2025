@@ -18,8 +18,8 @@
 script = ExtResource("1_u21bi")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-size = Vector3(10, 1, 26)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 2)
+size = Vector3(10, 1, 22)
 material = SubResource("StandardMaterial3D_1qmqq")
 
 [node name="Builder" type="Node3D" parent="." node_paths=PackedStringArray("instance_container", "camera", "gridmap")]
@@ -57,8 +57,8 @@ cell_center_x = false
 cell_center_y = false
 cell_center_z = false
 script = ExtResource("6_ml6qp")
-top_left = Vector2(-4, -12)
-dimensions = Vector2(9, 25)
+top_left = Vector2(-4, -9)
+dimensions = Vector2(9, 22)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 14.5, 0)
