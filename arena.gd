@@ -29,7 +29,7 @@ func _on_builder_structure_placed() -> void:
 	$HUD.deselect_structure()
 
 func get_random_enemy_location() -> Vector3:
-	return $GridMap.get_random_location(true)
+	return $GridMap.get_random_location(true, true)
 
 func get_random_friendly_location() -> Vector3:
 	# All player units  placed are added to the unit container
@@ -51,28 +51,31 @@ func get_rotation_to_target(target, source):
 	else:
 		return Vector3.ZERO
 
+func initialize_enemy(scene):
+	scene.on=true
+	scene.enemy=true
+	scene.start()
+	$GridMap.mark_cell_occupied(scene.position)
+	
 func spawn_power():
 	var Power = power.instantiate()
 	add_child(Power)
 	Power.position = get_random_enemy_location()
-	Power.on = true
-	Power.enemy = true
-	Power.start()
+	initialize_enemy(Power)
+	
 func spawn_turret():
 	var Turret = turret.instantiate()
 	add_child(Turret)
 	Turret.position = get_random_enemy_location()
 	Turret.rotation = get_rotation_to_target(get_random_friendly_location(), Turret.position)
-	Turret.on = true
-	Turret.enemy = true
-	Turret.start()
+	initialize_enemy(Turret)
+	
 func spawn_bank():
 	var Bank = bank.instantiate()
 	add_child(Bank)
 	Bank.position = get_random_enemy_location()
-	Bank.on = true
-	Bank.enemy = true
-	Bank.start()
+	initialize_enemy(Bank)
+	
 func spawn_artillery():
 	var Artillery = artillery.instantiate()
 	var target = get_random_friendly_location()
@@ -80,11 +83,7 @@ func spawn_artillery():
 	Artillery.position = get_random_enemy_location()
 	Artillery.rotation = get_rotation_to_target(target, Artillery.position)
 	Artillery.distance_to_target = Artillery.position.distance_to(target)
-	Artillery.on = true
-	Artillery.enemy = true
-	Artillery.start()
-
-
+	initialize_enemy(Artillery)
 
 func _on_timer_timeout():
 	spawn_artillery()

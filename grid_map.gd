@@ -56,20 +56,37 @@ func _build_grid_mesh(start_x: int, start_z: int, width: int, depth: int) -> voi
 	
 	grid_mesh_instance.mesh = mesh
 	
-func get_random_location(enemy := false) -> Vector3:
+func mark_cell_occupied(world_position: Vector3):
+	var cell_coords = local_to_map(world_position)
+	set_cell_item(cell_coords, 1)  # Mark cell as occupied
+	
+func get_random_location(enemy := false, avoid_occupied := false) -> Vector3:
 	var cell_size = self.cell_size.x
-
-	# X range is always full width
-	var x = (randi() % grid_width + grid_start_x) * cell_size
-
-	# Split the grid in half along Z
 	var half_depth = grid_depth / 2
+	var max_attempts = 100  # Prevent infinite loops
 
-	var z_offset = grid_start_z
-	if enemy:
-		z_offset += half_depth
+	for i in max_attempts:
+		# Pick a random X
+		var cell_x = randi() % grid_width + grid_start_x
 
-	var z = (randi() % half_depth + z_offset) * cell_size
+		# Pick a random Z based on side
+		var z_offset = grid_start_z
+		if enemy:
+			z_offset += half_depth
+		var cell_z = randi() % half_depth + z_offset
 
-	var y = 0.0
-	return Vector3(x, y, z)
+		# If avoiding occupied cells, check GridMap
+		if avoid_occupied:
+			var cell_coords = Vector3i(cell_x, 0, cell_z)
+			if get_cell_item(cell_coords) != -1:
+				continue  # Try another cell
+
+		# Return the center of the cell in world coordinates
+		var world_x = cell_x * cell_size
+		var world_z = cell_z * cell_size
+		var world_y = 0.0
+		return Vector3(world_x, world_y, world_z)
+
+	# If no valid location was found
+	push_warning("Failed to find a free grid cell after many attempts.")
+	return Vector3.ZERO
