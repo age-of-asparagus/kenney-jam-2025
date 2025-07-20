@@ -11,8 +11,5 @@ func _physics_process(delta):
 
 func set_inventory(structures:Array[Structure]) -> void:
 	for structure in structures:
-		print(structure)
-		# add them all to the selector widget
-		print(structure.name)
-		print(structure.icon)
-		structure_selector.add_item(structure.name, structure.icon)
+		var text = structure.name + "\n" + "$" + str(structure.cost) + " " + str(structure.energyUse) + "MW"
+		structure_selector.add_item(text, structure.icon)
