@@ -11,8 +11,7 @@ func _ready():
 	$Gun.start()
 	$Gun2.start()
 
-func _physics_process(delta):
-	spawn_power()
+
 
 
 func _on_hud_structure_selected(structure : Structure) -> void:
@@ -48,5 +47,5 @@ func spawn_artillery():
 	var Artillery = artillery.instantiate()
 
 
-#func _on_timer_timeout():
-	#spawn()
+func _on_timer_timeout():
+	spawn_power()

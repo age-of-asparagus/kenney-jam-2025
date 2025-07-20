@@ -79,6 +79,7 @@ on = true
 enemy = true
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [connection signal="structure_placed" from="Builder" to="." method="_on_builder_structure_placed"]
