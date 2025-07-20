@@ -34,6 +34,7 @@ func _physics_process(delta):
 func shoot():
 	var Cannonball = Cannonball.instantiate()
 	get_tree().current_scene.add_child(Cannonball)
+	Cannonball.distance_to_target = distance_to_target
 	Cannonball.global_position = $Marker3D.global_position
 	Cannonball.rotation = rotation
 	if enemy:
@@ -41,6 +42,7 @@ func shoot():
 		Cannonball.get_node("Area3D").set_collision_layer_value(2,true)
 		Cannonball.get_node("Area3D").set_collision_mask_value(1,true)
 		Cannonball.get_node("Area3D").set_collision_mask_value(2,false)
+	Cannonball.start()
 
 
 func _on_timer_timeout():
