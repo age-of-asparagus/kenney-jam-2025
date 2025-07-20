@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Structure" load_steps=4 format=3 uid="uid://c1nk8qx3se22q"]
 
 [ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="1_m2e2h"]
-[ext_resource type="Texture2D" uid="uid://rj36ljhan8rl" path="res://Assets/kenney_space-kit/Side/rocket_topA.png" id="1_t0wi0"]
+[ext_resource type="Texture2D" uid="uid://pqr6akvlritc" path="res://Assets/kenney_tower-defense-kit/Previews/spawn-round.png" id="1_t0wi0"]
 [ext_resource type="PackedScene" uid="uid://c7ggsmvkv8wle" path="res://artillery.tscn" id="2_wty43"]
 
 [resource]
