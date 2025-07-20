@@ -26,6 +26,8 @@ func update_inventory(cash : int):
 		var structure = structures[i]
 		var set_disabled = false
 		
+		if structure.energyUse > (Global.total_energy-Global.energy_used):
+			set_disabled = true
 		if structure.cost > cash:
 			set_disabled = true
 			
