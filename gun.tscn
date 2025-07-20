@@ -17,7 +17,7 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_dk5gl")
-health = 3
+max_health = 3
 firerate = 0.25
 
 [node name="Timer" type="Timer" parent="."]
@@ -59,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_4me2t")
 theme_override_styles/fill = SubResource("StyleBoxFlat_iywrq")
-value = 89.06
+value = 100.0
 show_percentage = false
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

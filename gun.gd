@@ -1,7 +1,8 @@
 extends Node3D
 @onready var timer = $Timer
 
-@export var health : int
+@export var max_health : int
+var health : int
 @export var firerate : float
 
 var bullet = preload("res://bullet.tscn")
@@ -15,6 +16,9 @@ var bullet_position_index = 0
 @export var enemy := false
 
 func start():
+	health = max_health
+	$SubViewport/ProgressBar.max_value = max_health
+	$SubViewport/ProgressBar.value = max_health
 	if on:
 		if enemy:
 			$Area3D.set_collision_layer_value(1,false)
@@ -23,6 +27,7 @@ func start():
 		timer.start()
 
 func _physics_process(delta):
+	$SubViewport/ProgressBar.value = health
 	if on:
 		if health <= 0:
 			queue_free()
@@ -33,7 +38,6 @@ func shoot():
 	Bullet.global_position = bullet_position[bullet_position_index].global_position
 	Bullet.rotation = rotation
 	if enemy:
-		print("hi")
 		Bullet.get_node("Area3D").set_collision_layer_value(1,false)
 		Bullet.get_node("Area3D").set_collision_layer_value(2,true)
 		Bullet.get_node("Area3D").set_collision_mask_value(1,true)
