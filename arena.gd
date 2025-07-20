@@ -15,7 +15,7 @@ func _physics_process(delta):
 		structure_list.reverse()
 		for structure in structure_list:
 			if structure.on:
-				structure.turn_off()
+				structure.delete()
 				break
 	
 
