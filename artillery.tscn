@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c7ggsmvkv8wle"]
 
 [ext_resource type="Script" uid="uid://dgklqhiwxl8k3" path="res://artillery.gd" id="1_yeks2"]
-[ext_resource type="PackedScene" uid="uid://c10lntb35t7xc" path="res://Assets/kenney_space-kit/Models/GLTF format/crater.glb" id="2_4nyb4"]
+[ext_resource type="PackedScene" uid="uid://lbvwl4q72b71" path="res://Assets/kenney_tower-defense-kit/Models/GLB format/spawn-round.glb" id="2_yeks2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d6ack"]
 size = Vector3(0.75, 0.8, 0.75)
@@ -28,8 +28,8 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 shape = SubResource("BoxShape3D_d6ack")
 
-[node name="crater2" parent="." instance=ExtResource("2_4nyb4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1.5)
+[node name="spawn-round2" parent="." instance=ExtResource("2_yeks2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 100.0
