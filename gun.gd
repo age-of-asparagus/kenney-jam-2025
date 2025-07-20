@@ -35,6 +35,7 @@ func _physics_process(delta):
 func shoot():
 	var Bullet = bullet.instantiate()
 	get_next_bullet_position()
+	get_tree().current_scene.add_child(Bullet)
 	Bullet.global_position = bullet_position[bullet_position_index].global_position
 	Bullet.rotation = rotation
 	if enemy:
@@ -42,7 +43,7 @@ func shoot():
 		Bullet.get_node("Area3D").set_collision_layer_value(2,true)
 		Bullet.get_node("Area3D").set_collision_mask_value(1,true)
 		Bullet.get_node("Area3D").set_collision_mask_value(2,false)
-	get_tree().current_scene.add_child(Bullet)
+
 
 
 func get_next_bullet_position():
