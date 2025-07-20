@@ -5,7 +5,10 @@ extends GridMap
 
 var grid_mesh_instance: MeshInstance3D
 
-
+var grid_start_x = 0
+var grid_start_z = 0
+var grid_width = 0
+var grid_depth = 0
 
 func _ready():
 	grid_mesh_instance = MeshInstance3D.new()
@@ -40,6 +43,12 @@ func _create_grid_mesh():
 	var depth = max_z - min_z + 1
 
 	_build_grid_mesh(min_x, min_z, width, depth)
+	
+	# Store bounds so we can use them later
+	grid_start_x = min_x
+	grid_start_z = min_z
+	grid_width = width
+	grid_depth = depth
 
 func _build_grid_mesh(start_x: int, start_z: int, width: int, depth: int) -> void:
 	var cell_size = self.cell_size.x
@@ -69,3 +78,10 @@ func _build_grid_mesh(start_x: int, start_z: int, width: int, depth: int) -> voi
 
 	var mesh = st.commit()
 	grid_mesh_instance.mesh = mesh
+	
+func get_random_location() -> Vector3:
+	var cell_size = self.cell_size.x
+	var x = (randi() % grid_width + grid_start_x) * cell_size
+	var z = (randi() % grid_depth + grid_start_z) * cell_size
+	var y = 0.0  # or whatever Y level you want
+	return Vector3(x, y, z)
