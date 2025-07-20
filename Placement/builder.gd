@@ -103,6 +103,7 @@ func place_structure(
 		structure_instance.on = true
 		instance_container.add_child(structure_instance)
 		structure_instance.start()
+		$AudioStreamPlayer.play()
 		
 		gridmap.set_cell_item(
 			gridmap_position, 

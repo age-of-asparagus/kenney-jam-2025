@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://7ydjnbrej4yd"]
+[gd_scene load_steps=18 format=3 uid="uid://7ydjnbrej4yd"]
 
 [ext_resource type="Environment" uid="uid://ofyq5pwj11sf" path="res://camera-environment.tres" id="1_bcb0y"]
 [ext_resource type="Script" uid="uid://fxm2dfson1lr" path="res://arena.gd" id="1_u21bi"]
 [ext_resource type="Texture2D" uid="uid://rnkolal5sgro" path="res://Placement/Sprites/selector.png" id="2_u45fm"]
 [ext_resource type="Script" uid="uid://clmauo4kdbkas" path="res://Placement/builder.gd" id="2_vbyki"]
+[ext_resource type="AudioStream" uid="uid://bxuew4cogplo1" path="res://SoundEffects/confirmation_001.ogg" id="3_18f6f"]
 [ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="3_jycnn"]
 [ext_resource type="Resource" uid="uid://7brrr3hnpk8d" path="res://Placement/Structures/gun.tres" id="4_ml6qp"]
 [ext_resource type="Texture2D" uid="uid://igtoa1cyljsw" path="res://Placement/Sprites/crosshair089-outline.png" id="5_8qske"]
@@ -32,6 +33,10 @@ script = ExtResource("2_vbyki")
 instance_container = NodePath("../UnitContainer")
 camera = NodePath("../View/Camera3D")
 gridmap = NodePath("../GridMap")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Builder"]
+stream = ExtResource("3_18f6f")
+volume_db = -20.0
 
 [node name="Placement" type="Node3D" parent="Builder"]
 
