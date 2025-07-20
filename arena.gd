@@ -10,7 +10,9 @@ func _ready():
 	randomize()
 	$Gun.start()
 	$Gun2.start()
-	
+
+func _physics_process(delta):
+	spawn_power()
 
 
 func _on_hud_structure_selected(structure : Structure) -> void:
@@ -30,17 +32,21 @@ func get_random_enemy_location() -> Vector3:
 		return random_child.global_position
 	else:
 		# pick a random cell on the grid:
-		return $GridMap.get_random_location()
+		return $GridMap.get_random_location(true)
 
 func spawn_power():
-	
+	var Power = power.instantiate()
+	add_child(Power)
+	power.position = get_random_enemy_location()
+	power.on = true
+	power.start()
 func spawn_turret():
-
+	var Turret = turret.instantiate()
 func spawn_bank():
-	
+	var Bank = bank.instantiate()
 func spawn_artillery():
+	var Artillery = artillery.instantiate()
 
 
-
-func _on_timer_timeout():
-	spawn()
+#func _on_timer_timeout():
+	#spawn()
