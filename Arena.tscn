@@ -45,12 +45,11 @@ texture = ExtResource("5_8qske")
 [node name="StructureContainer" type="Node3D" parent="Builder/Placement"]
 
 [node name="View" type="Node3D" parent="."]
-transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 0, 0)
+transform = Transform3D(1.19249e-08, -0.783694, 0.621148, 0, 0.621148, 0.783694, -1, -9.34545e-09, 7.40712e-09, 0, 1, 1.5)
 
 [node name="Camera3D" type="Camera3D" parent="View"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.975, 33.075)
 environment = ExtResource("1_bcb0y")
-projection = 1
 fov = 25.0
 size = 19.0
 
