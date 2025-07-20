@@ -9,7 +9,7 @@ func _ready():
 	set_inventory()
 
 func _physics_process(delta):
-	Global.cash += 10
+	Global.cash += 5
 	$MarginContainer/HBoxContainer/Cash.text = "$"+str(Global.cash)
 	$MarginContainer/HBoxContainer2/Energy_Available.text = str(Global.total_energy-Global.energy_used)
 	

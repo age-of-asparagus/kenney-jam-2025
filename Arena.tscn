@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7ydjnbrej4yd"]
+[gd_scene load_steps=15 format=3 uid="uid://7ydjnbrej4yd"]
 
 [ext_resource type="Environment" uid="uid://ofyq5pwj11sf" path="res://camera-environment.tres" id="1_bcb0y"]
 [ext_resource type="Script" uid="uid://fxm2dfson1lr" path="res://arena.gd" id="1_u21bi"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cmhqta4hq8xio" path="res://hud.tscn" id="9_u21bi"]
 [ext_resource type="PackedScene" uid="uid://scj4f0jcts8h" path="res://gun.tscn" id="11_1qmqq"]
 [ext_resource type="Resource" uid="uid://c1nk8qx3se22q" path="res://Placement/Structures/artillery.tres" id="11_tkj6m"]
+[ext_resource type="Resource" uid="uid://b5hsc0lbbj27a" path="res://Placement/Structures/Bank.tres" id="12_5fp84"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qmqq"]
 
@@ -66,7 +67,7 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 [node name="UnitContainer" type="Node3D" parent="."]
 
 [node name="HUD" parent="." instance=ExtResource("9_u21bi")]
-structures = Array[ExtResource("3_jycnn")]([ExtResource("4_ml6qp"), ExtResource("5_18q8f"), ExtResource("11_tkj6m")])
+structures = Array[ExtResource("3_jycnn")]([ExtResource("4_ml6qp"), ExtResource("5_18q8f"), ExtResource("11_tkj6m"), ExtResource("12_5fp84")])
 
 [node name="Gun" parent="." instance=ExtResource("11_1qmqq")]
 on = true

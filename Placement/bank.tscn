@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgt81xtexy7uh"]
+
+[ext_resource type="Script" uid="uid://bjg6odkv63xpf" path="res://Placement/bank.gd" id="1_dj1s5"]
+[ext_resource type="PackedScene" uid="uid://b4pe6q5dfr4w4" path="res://Assets/kenney_city-kit-industrial_1.0/Models/GLB format/building-a.glb" id="1_jl1b4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dj1s5"]
+size = Vector3(0.8, 0.5, 0.5)
+
+[node name="Bank" type="Node3D"]
+script = ExtResource("1_dj1s5")
+max_health = 30
+rate = 2.0
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_dj1s5")
+
+[node name="building-a2" parent="." instance=ExtResource("1_jl1b4")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Structure" load_steps=4 format=3 uid="uid://b5hsc0lbbj27a"]
+
+[ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="1_nm7vq"]
+[ext_resource type="Texture2D" uid="uid://dsngspbfm7se" path="res://Assets/kenney_city-kit-industrial_1.0/Previews/building-a.png" id="1_xyex3"]
+[ext_resource type="PackedScene" uid="uid://dgt81xtexy7uh" path="res://Placement/bank.tscn" id="2_4yipj"]
+
+[resource]
+script = ExtResource("1_nm7vq")
+name = "Bank"
+scene = ExtResource("2_4yipj")
+cost = 3000
+energyUse = 3
+target_placement = false
+icon = ExtResource("1_xyex3")
+metadata/_custom_type_script = "uid://rmuofr05ey6q"
