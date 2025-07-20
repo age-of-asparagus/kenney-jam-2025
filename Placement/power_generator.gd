@@ -1,5 +1,6 @@
 extends Node3D
 
+const RUBBLE = preload("res://Rubble.tscn")
 @export var energy_use : int
 var distance_to_target : float
 @export var max_health : int
@@ -31,5 +32,9 @@ func _physics_process(delta):
 	$SubViewport/ProgressBar.value = health
 	if on:
 		if health <= 0:
+			var rubble = RUBBLE.instantiate()
+			rubble.global_position = global_position
+			rubble.rotate_y(2*PI*randf())
+			get_tree().current_scene.add_child(rubble)
 			Global.total_energy -= power_generated
 			queue_free()

@@ -1,5 +1,6 @@
 extends Node3D
 
+const RUBBLE = preload("res://Rubble.tscn")
 @export var energy_use : int
 @export var max_health : int
 var health : int
@@ -33,5 +34,9 @@ func _physics_process(delta):
 	if on:
 		Global.cash += rate
 		if health <= 0:
+			var rubble = RUBBLE.instantiate()
+			rubble.global_position = global_position
+			rubble.rotate_y(2*PI*randf())
+			get_tree().current_scene.add_child(rubble)
 			turn_off()
 			queue_free()
