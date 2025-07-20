@@ -114,8 +114,10 @@ func place_structure(
 		selected_structure = null
 			
 func out_of_bounds(gridmap_position: Vector3):
+	
 	var x = gridmap_position.x
 	var y = gridmap_position.z
+	
 	if x < gridmap.grid_start_x:
 		return true
 	if x >= gridmap.grid_start_x + gridmap.grid_width:
@@ -124,8 +126,14 @@ func out_of_bounds(gridmap_position: Vector3):
 		return true
 	if y >= gridmap.grid_start_z + gridmap.grid_depth:
 		return true
-	else:
-		return false
+
+	# Additional check: if not targeting (i.e., placing), restrict to player's half
+	if not targetting:
+		var half_depth = gridmap.grid_depth / 2
+		if y >= gridmap.grid_start_z + half_depth:
+			return true
+
+	return false
 
 func get_rotation_to_target(target, source):
 	var dir = (target - source).normalized()
