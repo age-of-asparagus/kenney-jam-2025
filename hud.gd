@@ -13,7 +13,21 @@ func _physics_process(delta):
 	$MarginContainer/HBoxContainer/Cash.text = "$"+str(Global.cash)
 	$MarginContainer/HBoxContainer2/Energy_Available.text = str(Global.total_energy-Global.energy_used)
 	
-
+	update_inventory(Global.cash)
+	
+func update_inventory(cash : int):
+	print(cash)
+	for i in structure_selector.item_count:
+		# the Array structures should match the selector structures, 
+		# since the selector structure were generated based off the Array
+		var structure = structures[i]
+		var set_disabled = false
+		
+		if structure.cost > cash:
+			set_disabled = true
+			print("Not enough money!")
+		structure_selector.set_item_disabled(i, set_disabled)
+	
 func set_inventory():
 	for structure in structures:
 		var text = structure.name + "\n" + "$" + str(structure.cost) + " " + str(structure.energyUse) + "MW"
