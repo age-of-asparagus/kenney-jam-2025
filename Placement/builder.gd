@@ -22,24 +22,13 @@ var preview_instance
 var targetting := false
 var is_out_of_bounds := false
 
+var selected_structure : Structure
+
 func _ready():
 
 	plane = Plane(Vector3.UP, Vector3.ZERO)
-	# Create new MeshLibrary dynamically, can also be done in the editor
-	# See: https://docs.godotengine.org/en/stable/tutorials/3d/using_gridmaps.html
 	
-	#var mesh_library = MeshLibrary.new()
-	#
-	##for structure in structures:
-		##
-		##var id = mesh_library.get_last_unused_item_id()
-		##
-		##mesh_library.create_item(id)
-		##mesh_library.set_item_mesh(id, get_mesh(structure.model))
-		##mesh_library.set_item_mesh_transform(id, Transform3D())
-		#
-	#gridmap.mesh_library = mesh_library
-	#
+	selected_structure = structures[index]
 	update_preview_structure()
 	
 func _process(delta):
@@ -65,30 +54,28 @@ func _process(delta):
 		var target_rotation = get_rotation_to_target(gridmap_position, structure_position)
 		preview_instance.rotation = target_rotation
 	
-	var structure : Structure = structures[index]
-	
 	if Input.is_action_just_pressed("place"):
 		
 		if not targetting:
 			
 			# if this structure needs to target, then we need to place a preview first
-			if structure.target_placement:
+			if selected_structure.target_placement:
 
 				# We need to click a second time to set a target
 				targetting = true
-				# Store the placement position so we can instantiate the structure there
+				# Store the placement position so we can instantiate the selected_structure there
 				# and calculate the target angle
 				structure_position = gridmap_position
 				
 			# else the strucutre does NOT need to target and we can place it right away
 			else:
-				place_structure(structure, gridmap_position, Vector3.ZERO)
+				place_structure(selected_structure, gridmap_position, Vector3.ZERO)
 					
 						
 		else:
 			# Second click: rotate unit to face this second clicked grid cell
 			var target_rotation = get_rotation_to_target(gridmap_position, structure_position)
-			place_structure(structure, structure_position, target_rotation)
+			place_structure(selected_structure, structure_position, target_rotation)
 			
 			# done targetting, go back to normal placement
 			targetting = false
@@ -164,7 +151,7 @@ func update_preview_structure():
 		
 	# Create new structure preview in placement marker (or at clicked location if still targetting)
 	if targetting or not is_out_of_bounds:
-		var _model = structures[index].scene.instantiate()
+		var _model = selected_structure.scene.instantiate()
 		set_transparency(_model, 0.5)
 		# place the preview structure in the initial placement position
 		if targetting:
@@ -204,3 +191,7 @@ func set_transparency(node: Node, alpha: float) -> void:
 	# Recurse into all children
 	for child in node.get_children():
 		set_transparency(child, alpha)
+
+func set_selected_structure(structure: Structure):
+	selected_structure = structure
+	
