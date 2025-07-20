@@ -11,9 +11,8 @@ func _physics_process(delta):
 
 func set_inventory(structures:Array[Structure]) -> void:
 	for structure in structures:
+		print(structure)
 		# add them all to the selector widget
+		print(structure.name)
+		print(structure.icon)
 		structure_selector.add_item(structure.name, structure.icon)
-
-
-func _on_structure_selector_item_selected(index: int) -> void:
-	pass # Replace with function body.

@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Structure" load_steps=3 format=3 uid="uid://11cga3vnjmoa"]
+[gd_resource type="Resource" script_class="Structure" load_steps=4 format=3 uid="uid://11cga3vnjmoa"]
 
+[ext_resource type="Texture2D" uid="uid://vaoxeqbqcl3" path="res://Assets/kenney_city-kit-industrial_1.0/Previews/chimney-large.png" id="1_i86lw"]
 [ext_resource type="PackedScene" uid="uid://bnbayiwxcuj7g" path="res://Placement/power_generator.tscn" id="1_jn8e0"]
 [ext_resource type="Script" uid="uid://rmuofr05ey6q" path="res://Placement/structure.gd" id="1_q7jbr"]
 
 [resource]
 script = ExtResource("1_q7jbr")
-name = ""
+name = "Power"
 scene = ExtResource("1_jn8e0")
 cost = 2500
 energyUse = 0
 target_placement = false
+icon = ExtResource("1_i86lw")
 metadata/_custom_type_script = "uid://rmuofr05ey6q"
