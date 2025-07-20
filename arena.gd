@@ -98,7 +98,7 @@ func spawn_artillery():
 	initialize_enemy(Artillery)
 
 func _on_timer_timeout():
-	if (Global.enemy_total_energy - Global.enemy_energy_used) > 25:
+	if (Global.enemy_total_energy - Global.enemy_energy_used) >= 25:
 		var Random = RNG.randi_range(1,100)
 		if Random < 26:
 			spawn_power()
@@ -108,7 +108,7 @@ func _on_timer_timeout():
 			spawn_turret()
 		else:
 			spawn_artillery()
-	elif (Global.enemy_total_energy - Global.enemy_energy_used) > 10:
+	elif (Global.enemy_total_energy - Global.enemy_energy_used) >= 10:
 		var Random = RNG.randi_range(1,100)
 		if Random <35:
 			spawn_power()
@@ -116,3 +116,12 @@ func _on_timer_timeout():
 			spawn_bank()
 		else:
 			spawn_turret()
+	elif (Global.enemy_total_energy - Global.enemy_energy_used) >= 5:
+		var Random = RNG.randi_range(1,100)
+		if Random <51:
+			spawn_power()
+		else:
+			spawn_bank()
+	else:
+		spawn_power()
+	$Timer.start(Global.enemy_spawn_rate)
