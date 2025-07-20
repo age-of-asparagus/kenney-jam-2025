@@ -73,24 +73,31 @@ func handle_placement(gridmap_position: Vector3):
 				
 			# else the strucutre does NOT need to target and we can place it right away
 			else:
-				place_structure(selected_structure, gridmap_position, Vector3.ZERO)
+				place_structure(selected_structure, gridmap_position)
 					
 						
 		else:
 			# Second click: rotate unit to face this second clicked grid cell
 			var target_rotation = get_rotation_to_target(gridmap_position, structure_position)
-			place_structure(selected_structure, structure_position, target_rotation)
+			var distance = structure_position.distance_to(gridmap_position) 
+			place_structure(selected_structure, structure_position, target_rotation, distance)
 			
 			# done targetting, go back to normal placement
 			targetting = false
 
 
-func place_structure(structure: Structure, gridmap_position: Vector3, rotation: Vector3):
+func place_structure(
+	structure: Structure, 
+	gridmap_position: Vector3, 
+	rotation: Vector3 = Vector3.ZERO, 
+	distance := 0.0):
+		
 		var structure_instance = structure.scene.instantiate()
 		Global.cash -= structure.cost
 		Global.energy_used += structure.energyUse
 		structure_instance.global_position = gridmap.map_to_local(gridmap_position)
 		structure_instance.rotation = rotation
+		structure_instance.distance_to_target = distance
 		structure_instance.on = true
 		instance_container.add_child(structure_instance)
 		structure_instance.start()
